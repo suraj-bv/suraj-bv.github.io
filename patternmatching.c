@@ -42,8 +42,7 @@ printf("The resultant string is %s",ans);
 int main()
 {
 char str[100],rep[50],pat[50];
-int choice;
-printf("Enter your choice:\n");
-printf("Enter 1 to read a string:\n");
-printf("Enter 2 to print the resultant string:\n");
-printf("Enter 
+readdata(str,pat,rep);
+patternmatching(str,pat,rep);
+return 0;
+}
