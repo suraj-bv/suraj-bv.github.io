@@ -1,0 +1,122 @@
+/* 
+  Color Palette: Retro + Modern (Warm Pastels + Sleek Dark Elements)
+  Theme: Vintage warmth meets contemporary sleekness
+*/
+
+:root {
+  /* Primary Colors - Warm Pastels */
+  --color-coral: #ff7b54; /* Warm coral/salmon */
+  --color-peach: #ffb997; /* Soft peach */
+  --color-cream: #fff8f3; /* Warm off-white/cream */
+  --color-gold: #f7b801; /* Vintage gold/mustard */
+  --color-terracotta: #d4644a; /* Deep terracotta */
+
+  /* Accent Colors - Modern Touch */
+  --color-sage: #a8d5ba; /* Soft sage green */
+  --color-dust-blue: #7b9ba3; /* Muted blue */
+  --color-mauve: #c4969c; /* Soft mauve */
+
+  /* Neutral & Dark */
+  --color-dark-bg: #1f1612; /* Warm dark background */
+  --color-dark-alt: #2d1b1b; /* Alternative dark (slightly warm) */
+  --color-text-dark: #2c1810; /* Dark text */
+  --color-text-light: #fff8f3; /* Light text */
+  --color-text-muted: #8b7355; /* Muted text (warm brown) */
+  --color-border: #e8d5c4; /* Light border */
+  --color-border-dark: #4a3728; /* Dark border */
+
+  /* Semantic Colors */
+  --color-success: #52b788;
+  --color-warning: #f7b801;
+  --color-error: #d32f2f;
+
+  /* Typography */
+  --font-display:
+    "Playfair Display", "Georgia", serif; /* Bold, elegant display font */
+  --font-body:
+    "Inter", "Segoe UI", system-ui, sans-serif; /* Clean sans-serif */
+  --font-mono:
+    "Monaco", "Courier New", monospace; /* Monospace for code/terminal */
+
+  /* Font Sizes (Mobile-first, then scale up) */
+  --fs-xs: 0.75rem; /* 12px */
+  --fs-sm: 0.875rem; /* 14px */
+  --fs-base: 1rem; /* 16px */
+  --fs-lg: 1.125rem; /* 18px */
+  --fs-xl: 1.25rem; /* 20px */
+  --fs-2xl: 1.5rem; /* 24px */
+  --fs-3xl: 2rem; /* 32px */
+  --fs-4xl: 2.5rem; /* 40px */
+  --fs-5xl: 3.5rem; /* 56px */
+  --fs-6xl: 4.5rem; /* 72px */
+
+  /* Font Weights */
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 900;
+
+  /* Spacing Scale */
+  --space-xs: 0.25rem; /* 4px */
+  --space-sm: 0.5rem; /* 8px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+  --space-2xl: 3rem; /* 48px */
+  --space-3xl: 4rem; /* 64px */
+  --space-4xl: 6rem; /* 96px */
+  --space-5xl: 8rem; /* 128px */
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-warm: 0 10px 30px -8px rgba(255, 123, 84, 0.2);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+
+  /* Z-index Scale */
+  --z-dropdown: 1000;
+  --z-modal: 1050;
+  --z-popover: 1100;
+  --z-tooltip: 1150;
+  --z-sticky: 500;
+}
+
+/* Dark Mode - Will be toggled via JS */
+[data-theme="dark"] {
+  --color-bg: var(--color-dark-bg);
+  --color-bg-secondary: var(--color-dark-alt);
+  --color-text: var(--color-text-light);
+  --color-text-secondary: var(--color-text-muted);
+}
+
+/* Light Mode (optional future enhancement) */
+[data-theme="light"] {
+  --color-dark-bg: #fffbf5;
+  --color-dark-alt: #fff8f3;
+  --color-text: var(--color-text-dark);
+  --color-text-secondary: #8b7355;
+}
+
+/* Ensure dark mode is default */
+html {
+  color-scheme: dark;
+}

@@ -1,0 +1,74 @@
+/* App.css - Main Application Styles */
+
+.app {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--color-dark-bg);
+  color: var(--color-text-light);
+  transition:
+    background-color 0.6s ease,
+    color 0.6s ease;
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Section Base Styles */
+section {
+  position: relative;
+  width: 100%;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-dark-alt);
+  padding: var(--space-3xl) var(--space-lg);
+  border-top: 1px solid var(--color-border-dark);
+  margin-top: var(--space-4xl);
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+  font-size: var(--fs-sm);
+}
+
+/* Scroll Progress Indicator (optional) */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--color-coral),
+    var(--color-peach),
+    var(--color-gold)
+  );
+  z-index: 999;
+}
+
+/* Section Animations */
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  animation: sectionReveal 0.8s ease-out forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+}
