@@ -1,12 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWandSparkles } from "@fortawesome/free-solid-svg-icons";
 import Hero from "./components/Hero/Hero";
-import About from "./components/About/About";
-import Skills from "./components/Skills/Skills";
-import Projects from "./components/Projects/Projects";
-import Experience from "./components/Experience/Experience";
 import EasterEgg from "./components/EasterEgg/EasterEgg";
-import Contact from "./components/Contact/Contact";
 import "./App.css";
+
+const About = lazy(() => import("./components/About/About"));
+const Skills = lazy(() => import("./components/Skills/Skills"));
+const Projects = lazy(() => import("./components/Projects/Projects"));
+const Achievements = lazy(
+  () => import("./components/Achievements/Achievements"),
+);
+const Experience = lazy(() => import("./components/Experience/Experience"));
+const Contact = lazy(() => import("./components/Contact/Contact"));
 
 function App() {
   const [theme, setTheme] = useState("dark");
@@ -28,17 +34,26 @@ function App() {
 
   return (
     <div className="app" data-theme={theme}>
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
+
       {/* Easter Egg Component - Dark Mode Toggle */}
       <EasterEgg onToggleTheme={toggleTheme} currentTheme={theme} />
 
       {/* Main Content */}
-      <main className="main-content">
+      <main className="main-content" id="main-content">
         <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
+        <Suspense
+          fallback={<div className="section-loading">Loading sections...</div>}
+        >
+          <About />
+          <Skills />
+          <Projects />
+          <Achievements />
+          <Experience />
+          <Contact />
+        </Suspense>
       </main>
 
       {/* Footer */}
@@ -46,7 +61,7 @@ function App() {
         <div className="container">
           <p className="text-center text-muted">
             © 2026 Suraj | Built with React, Passion & a splash of retro vibes
-            ✨
+            <FontAwesomeIcon icon={faWandSparkles} />
           </p>
         </div>
       </footer>

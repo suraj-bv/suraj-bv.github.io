@@ -19,6 +19,20 @@ html {
   font-size: 16px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--color-dark-bg);
@@ -199,8 +213,20 @@ textarea {
 
 /* Focus visible for keyboard navigation */
 *:focus-visible {
-  outline: 2px solid var(--color-coral);
+  outline: 3px solid var(--color-coral);
   outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Enhanced keyboard navigation visibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-coral);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(255, 123, 84, 0.2);
 }
 
 /* Selection Color */

@@ -1,75 +1,107 @@
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBrain,
+  faChartSimple,
+  faCode,
+  faDatabase,
+  faDna,
+  faEye,
+  faGear,
+  faGlobe,
+  faMobileScreenButton,
+  faRobot,
+  faServer,
+  faCubes,
+  faPalette,
+  faClapperboard,
+  faLeaf,
+} from "@fortawesome/free-solid-svg-icons";
 import "./Skills.css";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Skills = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate skill cards on scroll
-      gsap.from(".skill-card", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-        },
-        opacity: 0,
-        y: 40,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power3.out",
-      });
-    }, sectionRef);
+    // Simple intersection observer for animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
 
-    return () => ctx.revert();
+    const cards = sectionRef.current?.querySelectorAll(".skill-card");
+    cards?.forEach((card) => {
+      card.style.opacity = "0";
+      card.style.transform = "translateY(40px)";
+      card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+      observer.observe(card);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const skillsData = [
     {
-      category: "Frontend",
-      icon: "🎨",
+      category: "Programming Languages",
+      icon: faCode,
       color: "coral",
       skills: [
-        { name: "React", icon: "⚛️" },
-        { name: "TypeScript", icon: "📘" },
-        { name: "CSS/Tailwind", icon: "🎨" },
-        { name: "Vue.js", icon: "💚" },
+        { name: "Python", icon: faDna },
+        { name: "JavaScript", icon: faCode },
+        { name: "Java", icon: faCode },
+        { name: "Deluge", icon: faGear },
       ],
     },
     {
-      category: "Backend",
-      icon: "⚙️",
+      category: "Web Development",
+      icon: faGlobe,
       color: "peach",
       skills: [
-        { name: "Node.js", icon: "🟢" },
-        { name: "Python", icon: "🐍" },
-        { name: "Express", icon: "🚂" },
-        { name: "FastAPI", icon: "⚡" },
+        { name: "React", icon: faCode },
+        { name: "HTML & CSS", icon: faCode },
+        { name: "Convex", icon: faCubes },
+        { name: "Django", icon: faServer },
       ],
     },
     {
-      category: "Mobile",
-      icon: "📱",
+      category: "Mobile & App Dev",
+      icon: faMobileScreenButton,
       color: "gold",
       skills: [
-        { name: "Flutter", icon: "🎯" },
-        { name: "React Native", icon: "⚛️" },
-        { name: "iOS/Swift", icon: "🍎" },
-        { name: "Android", icon: "🤖" },
+        { name: "React Native", icon: faMobileScreenButton },
+        { name: "Java Swings", icon: faCode },
+        { name: "Streamlit", icon: faClapperboard },
+        { name: "UI/UX Design", icon: faPalette },
       ],
     },
     {
-      category: "AI/ML",
-      icon: "🧠",
+      category: "AI/ML & Data",
+      icon: faBrain,
       color: "sage",
       skills: [
-        { name: "TensorFlow", icon: "🔢" },
-        { name: "PyTorch", icon: "🔥" },
-        { name: "NLP", icon: "💬" },
-        { name: "Computer Vision", icon: "👁️" },
+        { name: "TensorFlow & PyTorch", icon: faDna },
+        { name: "OpenCV & FaceNet", icon: faEye },
+        { name: "Pandas & NumPy", icon: faChartSimple },
+        { name: "Scikit-learn", icon: faRobot },
+      ],
+    },
+    {
+      category: "Databases & Tools",
+      icon: faDatabase,
+      color: "coral",
+      skills: [
+        { name: "MySQL", icon: faDatabase },
+        { name: "MongoDB", icon: faLeaf },
+        { name: "Git & GitHub", icon: faCode },
+        { name: "Zoho Ecosystem", icon: faGear },
+        { name: "n8n", icon: faGear },
       ],
     },
   ];
@@ -83,14 +115,18 @@ const Skills = () => {
           {skillsData.map((skillGroup, idx) => (
             <div key={idx} className={`skill-card skill-${skillGroup.color}`}>
               <div className="skill-header">
-                <span className="skill-icon">{skillGroup.icon}</span>
+                <span className="skill-icon">
+                  <FontAwesomeIcon icon={skillGroup.icon} />
+                </span>
                 <h3 className="skill-category">{skillGroup.category}</h3>
               </div>
 
               <ul className="skill-list">
                 {skillGroup.skills.map((skill, i) => (
                   <li key={i} className="skill-item">
-                    <span className="skill-emoji">{skill.icon}</span>
+                    <span className="skill-emoji">
+                      <FontAwesomeIcon icon={skill.icon} />
+                    </span>
                     <span className="skill-name">{skill.name}</span>
                   </li>
                 ))}

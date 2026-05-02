@@ -1,5 +1,8 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faArrowUpRightFromSquare as faArrowUpRightFromSquareSolid } from "@fortawesome/free-solid-svg-icons";
 
 const ProjectCard = ({ project }) => {
   const cardRef = useRef(null);
@@ -49,7 +52,9 @@ const ProjectCard = ({ project }) => {
     <div ref={cardRef} className="project-card">
       {/* Project Image */}
       <div className="project-image">
-        <div className="image-placeholder">{project.icon}</div>
+        <div className="image-placeholder">
+          <FontAwesomeIcon icon={project.icon} />
+        </div>
       </div>
 
       {/* Project Content */}
@@ -73,7 +78,7 @@ const ProjectCard = ({ project }) => {
             className="btn btn-primary btn-live"
             title="View live demo"
           >
-            🚀 Live Demo
+            <FontAwesomeIcon icon={faArrowUpRightFromSquareSolid} /> Live Demo
           </a>
           <a
             href={project.github}
@@ -82,7 +87,7 @@ const ProjectCard = ({ project }) => {
             className="btn btn-secondary btn-github"
             title="View source code"
           >
-            💻 GitHub
+            <FontAwesomeIcon icon={faGithub} /> GitHub
           </a>
         </div>
       </div>

@@ -10,6 +10,7 @@ const Hero = () => {
   const heroRef = useRef(null);
   const titleRef = useRef(null);
   const taglineRef = useRef(null);
+  const techStackRef = useRef(null);
   const subtitleRef = useRef(null);
   const ctaRef = useRef(null);
   const contentRef = useRef(null);
@@ -43,6 +44,15 @@ const Hero = () => {
             duration: 0.8,
           },
           0.3,
+        )
+        .from(
+          techStackRef.current,
+          {
+            opacity: 0,
+            y: 24,
+            duration: 0.7,
+          },
+          0.45,
         )
         // Animate subtitle
         .from(
@@ -147,15 +157,15 @@ const Hero = () => {
       <div className="hero-content" ref={contentRef}>
         <div className="hero-text-wrapper">
           <h1 ref={titleRef} className="hero-title">
-            Suraj
+            Suraj B V
           </h1>
 
           <p ref={taglineRef} className="hero-tagline">
-            Full-Stack Developer
+            Full-Stack Developer | AI Enthusiast 
           </p>
 
-          <p ref={taglineRef} className="hero-tech-stack">
-            React • Node.js  • AI/ML
+          <p ref={techStackRef} className="hero-tech-stack">
+            React • Node.js • AI/ML
           </p>
 
           <p ref={subtitleRef} className="hero-subtitle">

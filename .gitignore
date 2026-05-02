@@ -1,2 +1,5 @@
 *.md
 *.txt
+*.pdf
+*.xlsx
+/dist

@@ -15,6 +15,29 @@
   z-index: 1;
 }
 
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-md);
+  background: var(--color-coral);
+  color: var(--color-dark-bg);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-weight: var(--fw-semibold);
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: var(--space-md);
+}
+
+.section-loading {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg);
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+}
+
 /* Section Base Styles */
 section {
   position: relative;
@@ -64,6 +87,12 @@ section {
 
 section {
   animation: sectionReveal 0.8s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  section {
+    animation: none;
+  }
 }
 
 /* Responsive adjustments */

@@ -1,86 +1,67 @@
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  faFingerprint,
+  faHouse,
+  faPlaneDeparture,
+} from "@fortawesome/free-solid-svg-icons";
 import ProjectCard from "./ProjectCard";
 import "./Projects.css";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".project-card", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-        },
-        opacity: 0,
-        y: 50,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: "power3.out",
-      });
-    }, sectionRef);
+    // Simple intersection observer for animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
 
-    return () => ctx.revert();
+    const cards = sectionRef.current?.querySelectorAll(".project-card");
+    cards?.forEach((card) => {
+      card.style.opacity = "0";
+      card.style.transform = "translateY(50px)";
+      card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+      observer.observe(card);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const projectsData = [
     {
+      title: "Crimetrace AI",
+      description:
+        "AI-driven criminal face recognition system with real-time identification. Engineered Django backend for authentication, integrated OpenCV & FaceNet for video processing, and built interactive Streamlit UI with optimized low-latency performance.",
+      tags: ["Django", "OpenCV", "FaceNet", "Python", "Streamlit"],
+      github: "https://github.com/surajbv/crimetrace-ai",
+      live: "https://crimetrace.surajbv.me",
+      icon: faFingerprint,
+    },
+    {
       title: "WanderMate",
       description:
-        "A collaborative travel planning platform where users can create trips, invite friends, and plan itineraries together in real-time.",
-      tags: ["React", "Node.js", "MongoDB", "Socket.io"],
+        "Travel mate finding platform connecting users based on calculated compatibility scores. Integrated TalkJS API for real-time chat, managed full development lifecycle with clean GitHub version control, delivering a complete functional webpage.",
+      tags: ["React", "TalkJS", "MongoDB", "Node.js"],
       github: "https://github.com/surajbv/wandermate",
       live: "https://wandermate.surajbv.me",
-      icon: "✈️",
+      icon: faPlaneDeparture,
     },
     {
-      title: "AI Image Generator",
+      title: "QuickRent",
       description:
-        "A full-stack AI application that generates high-quality images from text prompts using DALL-E and Stable Diffusion APIs.",
-      tags: ["Python", "FastAPI", "React", "TensorFlow"],
-      github: "https://github.com/surajbv/ai-image-generator",
-      live: "https://aigen.surajbv.me",
-      icon: "🎨",
-    },
-    {
-      title: "MusicFlow Mobile App",
-      description:
-        "Cross-platform music streaming app with offline mode, personalized playlists, and real-time lyrics sync.",
-      tags: ["Flutter", "Firebase", "Dart", "REST APIs"],
-      github: "https://github.com/surajbv/musicflow",
-      live: "https://play.google.com/store/apps/details?id=com.musicflow",
-      icon: "🎵",
-    },
-    {
-      title: "Data Analytics Dashboard",
-      description:
-        "Interactive analytics dashboard with real-time data visualization, exportable reports, and machine learning predictions.",
-      tags: ["React", "D3.js", "Python", "PostgreSQL"],
-      github: "https://github.com/surajbv/analytics-dashboard",
-      live: "https://dashboard.surajbv.me",
-      icon: "📊",
-    },
-    {
-      title: "NLP Sentiment Analyzer",
-      description:
-        "ML model that analyzes sentiment in social media posts with 94% accuracy using transformer-based NLP techniques.",
-      tags: ["Python", "PyTorch", "Transformers", "Hugging Face"],
-      github: "https://github.com/surajbv/sentiment-analyzer",
-      live: "https://sentiment.surajbv.me",
-      icon: "🧠",
-    },
-    {
-      title: "E-commerce Platform",
-      description:
-        "Fully-featured e-commerce system with payment integration, inventory management, and admin dashboard.",
-      tags: ["Next.js", "Stripe", "PostgreSQL", "Tailwind CSS"],
-      github: "https://github.com/surajbv/ecommerce-platform",
-      live: "https://shop.surajbv.me",
-      icon: "🛒",
+        "Rental application with responsive Java Swing UI and real-time application logic using JDBC. Designed complete system with MySQL persistence, applied OOP principles for maintainability and scalability.",
+      tags: ["Java", "Swing", "JDBC", "MySQL", "OOP"],
+      github: "https://github.com/surajbv/quickrent",
+      live: "#",
+      icon: faHouse,
     },
   ];
 
@@ -90,8 +71,8 @@ const Projects = () => {
         <h2 className="section-title">Featured Projects</h2>
 
         <div className="projects-grid">
-          {projectsData.map((project, idx) => (
-            <ProjectCard key={idx} project={project} />
+          {projectsData.map((project) => (
+            <ProjectCard key={project.title} project={project} />
           ))}
         </div>
       </div>

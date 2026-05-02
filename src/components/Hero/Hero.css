@@ -266,3 +266,62 @@
     filter: blur(30px);
   }
 }
+
+@media (max-width: 375px) {
+  .hero-content {
+    padding: var(--space-sm);
+    gap: var(--space-lg);
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .hero-tagline {
+    font-size: clamp(0.9rem, 2.5vw, 1.25rem);
+  }
+
+  .hero-tech-stack {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+  }
+
+  .hero-cta {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--fs-sm);
+  }
+}
+
+@media (max-width: 320px) {
+  .hero {
+    min-height: 100vh;
+  }
+
+  .hero-content {
+    padding: var(--space-sm);
+    gap: var(--space-md);
+  }
+
+  .hero-title {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+
+  .hero-tagline {
+    font-size: clamp(0.75rem, 2vw, 1rem);
+  }
+
+  .hero-decoration-1,
+  .hero-decoration-2 {
+    display: none;
+  }
+
+  .hero-cta {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--fs-xs);
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+}

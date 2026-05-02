@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import "./EasterEgg.css";
 
@@ -6,89 +6,105 @@ const EasterEgg = ({ onToggleTheme, currentTheme }) => {
   const toggleRef = useRef(null);
   const sunRef = useRef(null);
   const moonRef = useRef(null);
+  const timeoutRef = useRef(null);
+  const [isFlashing, setIsFlashing] = useState(false);
 
   useEffect(() => {
-    const handleClick = () => {
-      if (toggleRef.current) {
-        // Dramatic rotation animation
-        gsap.to(toggleRef.current, {
-          rotation: 360,
-          duration: 0.8,
-          ease: "back.out",
+    if (!sunRef.current || !moonRef.current) return;
+
+    gsap.to(sunRef.current, {
+      autoAlpha: currentTheme === "light" ? 1 : 0,
+      scale: currentTheme === "light" ? 1 : 0.55,
+      rotate: currentTheme === "light" ? 0 : -20,
+      y: currentTheme === "light" ? 0 : 6,
+      duration: 0.45,
+      ease: "power2.out",
+    });
+
+    gsap.to(moonRef.current, {
+      autoAlpha: currentTheme === "dark" ? 1 : 0,
+      scale: currentTheme === "dark" ? 1 : 0.55,
+      rotate: currentTheme === "dark" ? 0 : 20,
+      y: currentTheme === "dark" ? 0 : -6,
+      duration: 0.45,
+      ease: "power2.out",
+    });
+  }, [currentTheme]);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        window.clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleToggle = () => {
+    if (toggleRef.current) {
+      gsap
+        .timeline()
+        .to(toggleRef.current, {
+          rotation: "+=210",
+          scale: 0.9,
+          duration: 0.2,
+          ease: "power2.in",
+        })
+        .to(toggleRef.current, {
+          rotation: "+=150",
+          scale: 1,
+          duration: 0.45,
+          ease: "back.out(1.6)",
           clearProps: "rotation",
         });
 
-        // Glow effect
-        gsap.from(toggleRef.current, {
-          boxShadow: "0 0 40px currentColor",
-          duration: 0.6,
+      gsap.fromTo(
+        toggleRef.current,
+        { boxShadow: "0 0 0 rgba(255, 123, 84, 0)" },
+        {
+          boxShadow: "0 0 32px rgba(255, 123, 84, 0.7)",
+          duration: 0.35,
+          yoyo: true,
+          repeat: 1,
           ease: "power2.out",
-        });
-      }
-
-      // Animate sun and moon
-      if (currentTheme === "dark" && sunRef.current) {
-        gsap.to(sunRef.current, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-        });
-        gsap.to(moonRef.current, {
-          opacity: 0,
-          scale: 0,
-          duration: 0.5,
-        });
-      } else if (currentTheme === "light" && moonRef.current) {
-        gsap.to(moonRef.current, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-        });
-        gsap.to(sunRef.current, {
-          opacity: 0,
-          scale: 0,
-          duration: 0.5,
-        });
-      }
-
-      onToggleTheme();
-    };
-
-    const toggle = toggleRef.current;
-    if (toggle) {
-      toggle.addEventListener("click", handleClick);
+        },
+      );
     }
 
-    return () => {
-      if (toggle) {
-        toggle.removeEventListener("click", handleClick);
-      }
-    };
-  }, [currentTheme, onToggleTheme]);
+    setIsFlashing(true);
+    if (timeoutRef.current) {
+      window.clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = window.setTimeout(() => {
+      setIsFlashing(false);
+    }, 700);
+
+    onToggleTheme();
+  };
+
+  const isDark = currentTheme === "dark";
 
   return (
-    <div className="easter-egg">
+    <div className={`easter-egg ${isFlashing ? "is-flashing" : ""}`}>
       <button
         ref={toggleRef}
+        type="button"
         className="theme-toggle"
-        aria-label="Toggle dark/light theme"
-        title="Click for dramatic theme change ✨"
+        aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+        aria-pressed={isDark}
+        title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+        onClick={handleToggle}
       >
-        <span
-          ref={sunRef}
-          className="icon sun"
-          style={{ opacity: currentTheme === "light" ? 1 : 0 }}
-        >
-          ☀️
+        <span className="theme-halo" aria-hidden="true"></span>
+        <span ref={sunRef} className="icon sun" aria-hidden="true">
+          {"\u2600"}
         </span>
-        <span
-          ref={moonRef}
-          className="icon moon"
-          style={{ opacity: currentTheme === "dark" ? 1 : 0 }}
-        >
-          🌙
+        <span ref={moonRef} className="icon moon" aria-hidden="true">
+          {"\u263D"}
         </span>
       </button>
+
+      <span className="theme-flash" aria-hidden="true"></span>
     </div>
   );
 };
