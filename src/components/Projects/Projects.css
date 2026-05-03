@@ -2,6 +2,7 @@
 
 .projects {
   padding: var(--space-4xl) var(--space-lg);
+  margin-bottom: var(--space-4xl);
   background: linear-gradient(
     180deg,
     var(--color-dark-bg) 0%,

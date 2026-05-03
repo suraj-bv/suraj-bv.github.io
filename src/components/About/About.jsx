@@ -10,7 +10,7 @@ import {
 import { ThumbnailsCarousel } from "../ui/signature";
 import "./About.css";
 import profilePhoto1 from "../../../assets/1.jpeg";
-import profilePhoto2 from "../../../assets/2.jpeg";
+import profilePhoto2 from "../../../assets/2.jpg";
 import profilePhoto3 from "../../../assets/3.jpeg";
 import profilePhoto4 from "../../../assets/4.jpg";
 import profilePhoto6 from "../../../assets/6.jpg";
@@ -37,10 +37,8 @@ const aboutPhotos = [
     alt: "Portrait photo 4",
   },
   {
-    full: "/assets/5.heic",
-    thumb: "/assets/5.heic",
-    fallbackFull: profilePhoto4,
-    fallbackThumb: profilePhoto4,
+    full: "/assets/5.jpeg",
+    thumb: "/assets/5.jpeg",
     alt: "Portrait photo 5",
   },
   {

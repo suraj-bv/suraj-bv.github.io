@@ -161,7 +161,7 @@ const Hero = () => {
           </h1>
 
           <p ref={taglineRef} className="hero-tagline">
-            Full-Stack Developer | AI Enthusiast 
+            Full-Stack Developer | Aspiring AI Engineer
           </p>
 
           <p ref={techStackRef} className="hero-tech-stack">

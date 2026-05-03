@@ -37,7 +37,7 @@
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
   gap: var(--space-2xl);
   max-width: 1200px;
   margin: 0 auto;
@@ -149,6 +149,7 @@
   margin: 0;
   color: var(--color-text-light);
   letter-spacing: 0.05em;
+  line-height: 1.2;
 }
 
 /* Skill List */
@@ -189,6 +190,7 @@
   color: var(--color-text-light);
   font-weight: var(--fw-medium);
   flex: 1;
+  line-height: 1.2;
 }
 
 /* Skill Bar (decorative bottom border animation) */
@@ -227,7 +229,7 @@
   }
 
   .skills-grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: 1fr;
     gap: var(--space-lg);
   }
 

@@ -8,12 +8,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Timeline from "@mui/lab/Timeline";
-import TimelineItem from "@mui/lab/TimelineItem";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
-import TimelineConnector from "@mui/lab/TimelineConnector";
-import TimelineContent from "@mui/lab/TimelineContent";
-import TimelineDot from "@mui/lab/TimelineDot";
 import "./Experience.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -78,51 +72,100 @@ const Experience = () => {
           Professional and academic journey with key accomplishments
         </p>
 
-        <Timeline position="alternate-reverse">
-          {experienceData.map((item, idx) => (
-            <TimelineItem key={item.company} className="mui-timeline-item">
-              <TimelineSeparator>
-                <TimelineDot
-                  className={`timeline-dot timeline-${item.color}`}
-                />
-                {idx < experienceData.length - 1 && <TimelineConnector />}
-              </TimelineSeparator>
+        <div className="timeline-shell">
+          {experienceData.map((item, idx) => {
+            const isLeft = idx % 2 === 0;
 
-              <TimelineContent>
-                <div className={`timeline-content timeline-${item.color}`}>
-                  <div className="timeline-header">
-                    <div className="company-info">
-                      <span className="company-icon">
-                        <FontAwesomeIcon icon={item.icon} />
-                      </span>
-                      <div className="company-details">
-                        <h3 className="company-name">{item.company}</h3>
-                        <p className="job-role">{item.role}</p>
+            return (
+              <div
+                key={item.company}
+                className={`timeline-row mui-timeline-item ${
+                  isLeft ? "timeline-left" : "timeline-right"
+                }`}
+              >
+                <div className="timeline-side timeline-side-left">
+                  {isLeft && (
+                    <div className={`timeline-content timeline-${item.color}`}>
+                      <div className="timeline-header">
+                        <div className="company-info">
+                          <span className="company-icon">
+                            <FontAwesomeIcon icon={item.icon} />
+                          </span>
+                          <div className="company-details">
+                            <h3 className="company-name">{item.company}</h3>
+                            <p className="job-role">{item.role}</p>
+                          </div>
+                        </div>
+                        <div className="timeline-meta">
+                          <span className="duration">{item.duration}</span>
+                          <span className="location">
+                            <FontAwesomeIcon icon={faLocationDot} />{" "}
+                            {item.location}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="timeline-meta">
-                      <span className="duration">{item.duration}</span>
-                      <span className="location">
-                        <FontAwesomeIcon icon={faLocationDot} /> {item.location}
-                      </span>
-                    </div>
-                  </div>
 
-                  <ul className="achievements">
-                    {item.achievements.map((achievement, aidx) => (
-                      <li key={`${item.company}-ach-${aidx}`}>
-                        <span className="achievement-icon">
-                          <FontAwesomeIcon icon={faCircleCheck} />
-                        </span>
-                        <span className="achievement-text">{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
+                      <ul className="achievements">
+                        {item.achievements.map((achievement, aidx) => (
+                          <li key={`${item.company}-ach-${aidx}`}>
+                            <span className="achievement-icon">
+                              <FontAwesomeIcon icon={faCircleCheck} />
+                            </span>
+                            <span className="achievement-text">
+                              {achievement}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
-              </TimelineContent>
-            </TimelineItem>
-          ))}
-        </Timeline>
+
+                <div className="timeline-center" aria-hidden="true">
+                  <span className={`timeline-dot timeline-${item.color}`} />
+                </div>
+
+                <div className="timeline-side timeline-side-right">
+                  {!isLeft && (
+                    <div className={`timeline-content timeline-${item.color}`}>
+                      <div className="timeline-header">
+                        <div className="company-info">
+                          <span className="company-icon">
+                            <FontAwesomeIcon icon={item.icon} />
+                          </span>
+                          <div className="company-details">
+                            <h3 className="company-name">{item.company}</h3>
+                            <p className="job-role">{item.role}</p>
+                          </div>
+                        </div>
+                        <div className="timeline-meta">
+                          <span className="duration">{item.duration}</span>
+                          <span className="location">
+                            <FontAwesomeIcon icon={faLocationDot} />{" "}
+                            {item.location}
+                          </span>
+                        </div>
+                      </div>
+
+                      <ul className="achievements">
+                        {item.achievements.map((achievement, aidx) => (
+                          <li key={`${item.company}-ach-${aidx}`}>
+                            <span className="achievement-icon">
+                              <FontAwesomeIcon icon={faCircleCheck} />
+                            </span>
+                            <span className="achievement-text">
+                              {achievement}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
