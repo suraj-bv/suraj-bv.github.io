@@ -1,0 +1,44 @@
+SURAJ B V
+Shivamogga, Karnataka | surajbv5566@gmail.com | +91-8431348081 | LinkedIn | GitHub | Leetcode
+EDUCATION
+  Bachelor of Engineering (Information Science and Engineering)	Dec 2022 – May 2026
+  Shridevi Institute of Engineering and Technology, Tumkur	CGPA 8.93/10
+SKILLS
+       •  Programming Languages: Python, JavaScript, Java
+       •  Web & App development: HTML & CSS, Reactjs, React Native, Convex
+       •  Data, AI/ML & Algorithms: Pandas, NumPy, OpenCV, FaceNet, PyTorch, TensorFlow, Scikit-learn, DSA
+       •  Databases & Tools: MySQL, MongoDB, Git & GitHub, Hugging Face, Zoho CRM, Zoho Creator, Zoho Flow, Zoho Cliq
+       •  Soft Skills: Communication, Leadership, Teamwork, Problem Solving, Time Management 
+EXPERIENCE
+  Software Engineering Intern, Clean Fanatics	On-Site, Nov 2025 - Present
+      •  Adapted quickly to a new platform and understanding of business logic, and Zoho-based application development.
+      •  Gained hands-on experience across the Zoho ecosystem, including Creator, CRM, Analytics, Flow, Deluge scripting, workflows, and REST API integrations.
+      •  Developed custom Deluge functions to automate business processes and translate requirements into scalable solutions.
+      •  Configured workflows and integrations to streamline operations and improve data flow between Zoho applications. 
+PROJECTS
+  Crimetrace AI – AI driven criminal face recognition system - Link	Aug 2025 - Present
+      •  Developed a secure backend using Django for user authentication and record management.
+      •  Engineered the core pipeline by integrating OpenCV and FaceNet for real-time identification.
+      •  Built an interactive UI with Streamlit for real-time visualization.
+      •  Optimized system performance to achieve low-latency processing of video input.
+  WanderMate – Travel mate finding webpage - Link	June 2024 - Nov 2024
+      •  Developed a platform for user matching based on a calculated compatibility score.
+      •  Integrated the TalkJs API to implement a seamless, real-time chat function.
+      •  Managed the full development lifecycle, ensuring clean version control on GitHub.
+      •  Delivered a complete, functional webpage demonstrating proficiency in web technologies.
+  QuickRent – Rental application with Java and DBMS - Link	Dec 2023 - Apr 2024
+      •  Designed a complete rental application with a responsive UI built using Java Swings.
+      •  Engineered the real-time application logic using robust Java Database Connectivity (JDBC).
+      •  Ensured data integrity and user management by persisting all data in MySQL.
+      •  Applied Object-Oriented Programming (OOP) principles to enhance maintainability and scalability.
+ACHIEVEMENTS
+     •  Hack-2-Intern at VTU, Mysore (Dec 2024): 1st Candidate shortlisted for paid internship among 200+ participants.
+     •  Hackathon at Shridevi Institute of Engineering and Technology, Tumkur (Oct 2024) & VTU – Mysore (Dec 2024): Led a team to develop an innovative solution website within 24 hours.
+     •  Listed for Scholarship (2022-2024): Consistently maintained a CGPA of 8.5 or higher.
+     •  Hacker Rank (2022-Present): Earned a 5-Star Rating in Python, demonstrating strong coding proficiency on a competitive global platform.
+CERTIFICATIONS 
+     •  NPTEL Problem Solving through C - Certificate
+     •  NPTEL Database Management System - Certificate
+     •  NPTEL The Joy of Computing using Python - Certificate
+     •  Coursera Generative AI for Everyone - Certificate
+     •  NPTEL Data Structures and Algorithms using Java - Certificate

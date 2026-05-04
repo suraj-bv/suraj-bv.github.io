@@ -12,9 +12,13 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import emailjs from "@emailjs/browser";
 import "./Contact.css";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Initialize Email.js
+emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "");
 
 const Contact = () => {
   const sectionRef = useRef(null);
@@ -34,7 +38,6 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
-  const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT || null;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -162,37 +165,28 @@ const Contact = () => {
       }, 500);
     };
 
-    // If a form endpoint is configured via Vite env, POST to it.
-    if (FORM_ENDPOINT) {
-      fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+    // Send email using Email.js
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: payload.name,
+          from_email: payload.email,
+          message: payload.message,
+          to_email: "surajbv5566@gmail.com",
         },
-        body: JSON.stringify(payload),
+      )
+      .then(() => {
+        animateSend();
       })
-        .then(async (res) => {
-          if (res.ok) {
-            animateSend();
-          } else {
-            const text = await res.text();
-            throw new Error(text || `Status ${res.status}`);
-          }
-        })
-        .catch((err) => {
-          console.error("Form submit error:", err);
-          setSubmitError("Failed to send message. Please try again later.");
-          setIsSubmitting(false);
-        });
-    } else {
-      // No endpoint configured — keep previous simulated behavior but warn in console
-      console.warn(
-        "No form endpoint configured. Set VITE_FORM_ENDPOINT to enable real submissions.",
-      );
-      console.log("Contact form payload:", payload);
-      animateSend();
-    }
+      .catch((err) => {
+        console.error("Email send error:", err);
+        setSubmitError(
+          "Failed to send message. Please check the configuration and try again.",
+        );
+        setIsSubmitting(false);
+      });
   };
 
   const socialLinks = [

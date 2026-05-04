@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ark-ui/react": "^5.36.2",
+    "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@fortawesome/free-brands-svg-icons": "^7.2.0",
@@ -19,6 +20,7 @@
     "@mui/lab": "^9.0.0-beta.2",
     "@mui/material": "^9.0.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "emailjs-com": "^3.2.0",
     "gsap": "^3.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

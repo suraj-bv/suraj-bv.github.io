@@ -1,5 +1,7 @@
-*.md
-*.txt
-*.pdf
-*.xlsx
+# Environment variables
+.env.local
+.env
+node_modules
+
+# Build output
 /dist

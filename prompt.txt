@@ -1,0 +1,27 @@
+Build a bold, creative, single-page scrollable portfolio website for a Full-Stack Software Developer specializing in Frontend (React/Vue), Backend (Node/Python), Mobile (Flutter/React Native), and AI/ML.
+
+DESIGN & VIBE:
+- Aesthetic: Bold, creative, high-energy — NOT a generic Bootstrap template
+- Color palette: Surprise me with an unexpected but cohesive palette (avoid cliché blue/white dev portfolios)
+- Typography: Mix a strong display font with a clean sans-serif body font
+- Animations: Bold — use parallax scrolling, 3D transforms, floating particles (use tsparticles or three.js), smooth scroll-triggered reveals, and hover micro-interactions
+- Tone of copy: Witty & playful — puns welcome, no buzzword soup
+
+SECTIONS (in order):
+1. Hero — Full-screen with particle background, animated headline, a punchy one-liner tagline, and a CTA button ("See My Work")
+2. About Me — Short, personality-packed bio with a fun twist (e.g. "Things I love" vs "Things I tolerate" list)
+3. Skills — Visual skill display (not a plain list) — consider animated progress rings, tech logos grid, or a creative card layout; cover Frontend, Backend, Mobile, AI/ML
+4. Projects / Work — Card grid with hover 3D tilt effect, tech tags, live demo + GitHub links
+5. Experience / Resume — Stylish vertical timeline with scroll animations
+6. Fun / Interactive Easter Egg — Something unexpected: a mini terminal, a dark mode toggle with a dramatic animation, a secret konami code surprise, or a spinning ASCII art — your choice
+7. Contact — Minimal form + social links, with a witty closing line
+
+TECH STACK FOR IMPLEMENTATION:
+- HTML + CSS + Vanilla JS (or React if preferred)
+- Use tsparticles for hero particles
+- Use GSAP or ScrollTrigger for scroll animations
+- Fully responsive (mobile-first)
+- Semantic HTML + accessible
+
+OUTPUT:
+Deliver complete, copy-paste ready code. Start with the full HTML file, then separate CSS and JS files if needed. Add inline comments for any section that can be customized (name, links, project data).
