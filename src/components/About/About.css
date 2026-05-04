@@ -4,8 +4,8 @@
   padding: 4rem 1.5rem;
   background: linear-gradient(
     180deg,
-    var(--color-dark-bg) 0%,
-    var(--color-dark-alt) 100%
+    var(--color-bg) 0%,
+    var(--color-bg-secondary) 100%
   );
   position: relative;
   overflow: hidden;
@@ -36,7 +36,7 @@
 }
 
 .about__content p {
-  color: var(--color-text-light);
+  color: var(--color-text);
   font-size: 1.125rem;
   margin: 0;
   line-height: 1.75;
@@ -63,9 +63,9 @@
 }
 
 .about__highlights li {
-  color: var(--color-text-light);
+  color: var(--color-text);
   padding: 0.65rem 0;
-  border-bottom: 1px solid var(--color-border-dark);
+  border-bottom: 1px solid var(--color-border-light);
   transition: all 0.3s ease;
 }
 

@@ -98,6 +98,14 @@
   --z-popover: 1100;
   --z-tooltip: 1150;
   --z-sticky: 500;
+
+  /* Semantic color tokens (light-mode friendly defaults) */
+  --color-bg: var(--color-cream);
+  --color-bg-secondary: #ffffff;
+  --color-text: var(--color-text-dark);
+  --color-text-secondary: var(--color-text-muted);
+  --color-border-light: var(--color-border);
+  --color-border-dark: var(--color-border-dark);
 }
 
 /* Dark Mode - Will be toggled via JS */
@@ -106,17 +114,21 @@
   --color-bg-secondary: var(--color-dark-alt);
   --color-text: var(--color-text-light);
   --color-text-secondary: var(--color-text-muted);
+  --color-border-light: var(--color-border);
+  --color-border-dark: var(--color-border-dark);
 }
 
 /* Light Mode (optional future enhancement) */
 [data-theme="light"] {
-  --color-dark-bg: #fffbf5;
-  --color-dark-alt: #fff8f3;
+  --color-bg: var(--color-cream);
+  --color-bg-secondary: #fff8f3;
   --color-text: var(--color-text-dark);
-  --color-text-secondary: #8b7355;
+  --color-text-secondary: var(--color-text-muted);
+  --color-border-light: var(--color-border);
 }
 
 /* Ensure dark mode is default */
 html {
-  color-scheme: dark;
+  /* Prefer light-friendly defaults; components use semantic tokens above. */
+  color-scheme: light;
 }

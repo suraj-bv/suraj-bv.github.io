@@ -10,8 +10,8 @@
   overflow: hidden;
   background: linear-gradient(
     135deg,
-    var(--color-dark-bg) 0%,
-    var(--color-dark-alt) 100%
+    var(--color-bg) 0%,
+    var(--color-bg-secondary) 100%
   );
 }
 
@@ -121,7 +121,7 @@
 
 .hero-subtitle {
   font-size: clamp(0.9rem, 2vw, 1.3rem);
-  color: var(--color-text-light);
+  color: var(--color-text);
   margin: 0;
   font-weight: var(--fw-normal);
   line-height: 1.8;

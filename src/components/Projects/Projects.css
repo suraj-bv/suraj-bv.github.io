@@ -5,8 +5,8 @@
   margin-bottom: var(--space-4xl);
   background: linear-gradient(
     180deg,
-    var(--color-dark-bg) 0%,
-    var(--color-dark-alt) 100%
+    var(--color-bg) 0%,
+    var(--color-bg-secondary) 100%
   );
   position: relative;
   overflow: hidden;
@@ -49,7 +49,7 @@
 /* Project Card */
 .project-card {
   background: rgba(255, 123, 84, 0.05);
-  border: 2px solid var(--color-border-dark);
+  border: 2px solid var(--color-border-light);
   border-radius: var(--radius-xl);
   overflow: hidden;
   cursor: pointer;
@@ -95,13 +95,13 @@
   height: 200px;
   background: linear-gradient(
     135deg,
-    var(--color-dark-alt) 0%,
+    var(--color-bg-secondary) 0%,
     rgba(255, 123, 84, 0.08) 100%
   );
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 2px solid var(--color-border-dark);
+  border-bottom: 2px solid var(--color-border-light);
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
@@ -110,7 +110,7 @@
 .project-card:hover .project-image {
   background: linear-gradient(
     135deg,
-    var(--color-dark-alt) 0%,
+    var(--color-bg-secondary) 0%,
     rgba(255, 123, 84, 0.15) 100%
   );
   border-color: rgba(255, 123, 84, 0.3);
@@ -146,7 +146,7 @@
 
 .project-description {
   font-size: var(--fs-sm);
-  color: var(--color-text-light);
+  color: var(--color-text);
   margin: 0;
   line-height: 1.6;
   flex: 1;
@@ -203,7 +203,7 @@
 
 .btn-primary {
   background: var(--color-coral);
-  color: var(--color-dark-bg);
+  color: var(--color-bg);
   box-shadow: 0 8px 20px rgba(255, 123, 84, 0.2);
 }
 
@@ -221,7 +221,7 @@
 
 .btn-secondary:hover {
   background: var(--color-peach);
-  color: var(--color-dark-bg);
+  color: var(--color-bg);
   transform: translateY(-2px);
 }
 

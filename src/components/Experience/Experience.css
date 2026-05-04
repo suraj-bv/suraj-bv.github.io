@@ -4,8 +4,8 @@
   padding: var(--space-4xl) var(--space-lg);
   background: linear-gradient(
     180deg,
-    var(--color-dark-alt) 0%,
-    var(--color-dark-bg) 100%
+    var(--color-bg-secondary) 0%,
+    var(--color-bg) 100%
   );
   position: relative;
   overflow: hidden;
@@ -35,7 +35,7 @@
 }
 
 .section-subtitle {
-  color: var(--color-text-light);
+  color: var(--color-text);
   font-size: var(--fs-lg);
   margin-bottom: var(--space-3xl);
   position: relative;
@@ -116,28 +116,28 @@
 .timeline-dot.timeline-coral {
   background-color: var(--color-coral) !important;
   box-shadow:
-    0 0 0 6px var(--color-dark-alt),
+    0 0 0 6px var(--color-bg-secondary),
     0 0 20px rgba(255, 123, 84, 0.4) !important;
 }
 
 .timeline-dot.timeline-peach {
   background-color: var(--color-peach) !important;
   box-shadow:
-    0 0 0 6px var(--color-dark-alt),
+    0 0 0 6px var(--color-bg-secondary),
     0 0 20px rgba(255, 185, 151, 0.4) !important;
 }
 
 .timeline-dot.timeline-gold {
   background-color: var(--color-gold) !important;
   box-shadow:
-    0 0 0 6px var(--color-dark-alt),
+    0 0 0 6px var(--color-bg-secondary),
     0 0 20px rgba(247, 184, 1, 0.4) !important;
 }
 
 .timeline-dot.timeline-sage {
   background-color: #7ecb9d !important;
   box-shadow:
-    0 0 0 6px var(--color-dark-alt),
+    0 0 0 6px var(--color-bg-secondary),
     0 0 20px rgba(126, 203, 157, 0.4) !important;
 }
 
@@ -147,7 +147,7 @@
   flex: 0 0 auto;
   box-sizing: border-box;
   background: rgba(255, 123, 84, 0.06);
-  border: 2px solid var(--color-border-dark);
+  border: 2px solid var(--color-border-light);
   border-radius: var(--radius-xl);
   padding: var(--space-lg);
   transition: all var(--transition-base);
@@ -243,7 +243,7 @@
 .job-role {
   margin: 0;
   font-size: var(--fs-base);
-  color: var(--color-text-light);
+  color: var(--color-text);
   font-weight: var(--fw-semibold);
 }
 
@@ -278,7 +278,7 @@
   display: flex;
   align-items: flex-start;
   gap: var(--space-md);
-  color: var(--color-text-light);
+  color: var(--color-text);
   font-size: var(--fs-sm);
   line-height: 1.7;
 }
@@ -374,7 +374,7 @@
     height: 14px;
     left: 20px;
     box-shadow:
-      0 0 0 4px var(--color-dark-alt),
+      0 0 0 4px var(--color-bg-secondary),
       0 0 15px rgba(255, 123, 84, 0.3) !important;
   }
 

@@ -4,8 +4,8 @@
   padding: var(--space-4xl) var(--space-lg);
   background: linear-gradient(
     180deg,
-    var(--color-dark-bg) 0%,
-    var(--color-dark-alt) 100%
+    var(--color-bg) 0%,
+    var(--color-bg-secondary) 100%
   );
   position: relative;
   overflow: hidden;
@@ -36,7 +36,7 @@
 }
 
 .achievements .section-subtitle {
-  color: var(--color-text-light);
+  color: var(--color-text);
   font-size: var(--fs-md);
   margin-bottom: var(--space-3xl);
   position: relative;
@@ -56,7 +56,7 @@
 /* Achievement Card Base */
 .achievement-card {
   background: rgba(255, 123, 84, 0.05);
-  border: 2px solid var(--color-border-dark);
+  border: 2px solid var(--color-border-light);
   border-radius: var(--radius-xl);
   padding: var(--space-2xl);
   transition: all var(--transition-base);
@@ -156,7 +156,7 @@
   font-size: var(--fs-lg);
   font-weight: var(--fw-bold);
   margin: 0;
-  color: var(--color-text-light);
+  color: var(--color-text);
 }
 
 .achievement-subtitle {
@@ -177,7 +177,7 @@
 
 .achievement-description {
   font-size: var(--fs-sm);
-  color: var(--color-text-light);
+  color: var(--color-text);
   margin: 0;
   line-height: 1.6;
   margin-top: var(--space-sm);

@@ -15,11 +15,11 @@ const Experience = lazy(() => import("./components/Experience/Experience"));
 const Contact = lazy(() => import("./components/Contact/Contact"));
 
 function App() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
 
   // Initialize theme
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "dark";
+    const savedTheme = localStorage.getItem("theme") || "light";
     setTheme(savedTheme);
     document.documentElement.setAttribute("data-theme", savedTheme);
   }, []);

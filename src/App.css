@@ -3,8 +3,8 @@
 .app {
   position: relative;
   min-height: 100vh;
-  background-color: var(--color-dark-bg);
-  color: var(--color-text-light);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   transition:
     background-color 0.6s ease,
     color 0.6s ease;
@@ -20,7 +20,7 @@
   top: -100px;
   left: var(--space-md);
   background: var(--color-coral);
-  color: var(--color-dark-bg);
+  color: var(--color-bg);
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-md);
   font-weight: var(--fw-semibold);
@@ -46,9 +46,9 @@ section {
 
 /* Footer */
 .footer {
-  background-color: var(--color-dark-alt);
+  background-color: var(--color-bg-secondary);
   padding: var(--space-3xl) var(--space-lg);
-  border-top: 1px solid var(--color-border-dark);
+  border-top: 1px solid var(--color-border-light);
   margin-top: var(--space-4xl);
   text-align: center;
 }
