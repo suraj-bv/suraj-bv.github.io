@@ -171,10 +171,11 @@ const Contact = () => {
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
-          from_name: payload.name,
-          from_email: payload.email,
+          name: payload.name,
+          email: payload.email,
           message: payload.message,
-          to_email: "surajbv5566@gmail.com",
+          time: new Date().toLocaleString(),
+          title: payload.name,
         },
       )
       .then(() => {

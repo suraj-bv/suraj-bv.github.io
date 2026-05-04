@@ -1,7 +1,13 @@
 # Environment variables
 .env.local
+.env.example
 .env
 node_modules
 
 # Build output
 /dist
+
+*.pdf
+*.txt
+*.xlsx
+.md 
