@@ -1,204 +1,111 @@
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef, useState } from "react";
 import { useSanity } from "../../lib/useSanity";
-import ParticleBackground from "../ParticleBackground/ParticleBackground";
 import "./Hero.css";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const HERO_QUERY = `*[_type == "hero"][0]{ name, tagline, techStack, subtitle, ctaText }`;
 
 const Hero = () => {
   const { data: hero } = useSanity(HERO_QUERY);
   const heroRef = useRef(null);
-  const titleRef = useRef(null);
-  const taglineRef = useRef(null);
-  const techStackRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const ctaRef = useRef(null);
-  const contentRef = useRef(null);
+  const [lineIndex, setLineIndex] = useState(-1);
+  const [charIndex, setCharIndex] = useState(0);
+  const [showCta, setShowCta] = useState(false);
+  const [showCursor, setShowCursor] = useState(false);
+
+  const name = hero?.name || "Suraj B V";
+  const tagline = hero?.tagline || "Software Engineer | Full-Stack Developer";
+  const techStack = hero?.techStack || "React • Node.js • Convex";
+
+  const lines = [
+    { cls: "line-cmd", text: "$ whoami" },
+    { cls: "line-out", text: `> ${name}` },
+    { cls: "line-cmd", text: "$ cat role.txt" },
+    { cls: "line-out", text: `> ${tagline}` },
+    { cls: "line-cmd", text: "$ echo $TECH_STACK" },
+    { cls: "line-out", text: `> ${techStack}` },
+  ];
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Create main timeline for hero entrance
-      const tl = gsap.timeline({
-        defaults: {
-          ease: "power3.out",
-        },
-      });
+    if (!hero) return;
+    const timer = setTimeout(() => setLineIndex(0), 500);
+    return () => clearTimeout(timer);
+  }, [hero]);
 
-      // Animate title with scale and fade
-      tl.from(
-        titleRef.current,
-        {
-          opacity: 0,
-          y: 50,
-          scale: 0.9,
-          duration: 1.2,
-        },
-        0,
-      )
-        // Animate tagline
-        .from(
-          taglineRef.current,
-          {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-          },
-          0.3,
-        )
-        .from(
-          techStackRef.current,
-          {
-            opacity: 0,
-            y: 24,
-            duration: 0.7,
-          },
-          0.45,
-        )
-        // Animate subtitle
-        .from(
-          subtitleRef.current,
-          {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-          },
-          0.5,
-        )
-        // Animate CTA button with scale
-        .from(
-          ctaRef.current,
-          {
-            opacity: 0,
-            y: 30,
-            scale: 0.9,
-            duration: 0.8,
-          },
-          0.7,
-        );
-
-      // Parallax effect on scroll
-      gsap.to(contentRef.current, {
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-          markers: false,
-        },
-        y: 100,
-        opacity: 0.5,
-        duration: 1,
-      });
-
-      // Floating animation for title
-      gsap.to(titleRef.current, {
-        y: -20,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-
-      // Glow pulse effect on subtitle
-      gsap.to(subtitleRef.current, {
-        textShadow:
-          "0 0 20px rgba(255, 123, 84, 0.5), 0 0 40px rgba(255, 185, 151, 0.3)",
-        duration: 2,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // CTA button hover animations
   useEffect(() => {
-    const cta = ctaRef.current;
-    if (!cta) return;
+    if (lineIndex < 0 || lineIndex >= lines.length) return;
 
-    const handleMouseEnter = () => {
-      gsap.to(cta, {
-        scale: 1.05,
-        duration: 0.3,
-        ease: "power2.out",
-      });
-    };
+    const currentText = lines[lineIndex].text;
+    if (charIndex < currentText.length) {
+      const speed = lines[lineIndex].cls === "line-cmd" ? 45 : 25;
+      const timer = setTimeout(() => setCharIndex((c) => c + 1), speed);
+      return () => clearTimeout(timer);
+    }
 
-    const handleMouseLeave = () => {
-      gsap.to(cta, {
-        scale: 1,
-        duration: 0.3,
-        ease: "power2.out",
-      });
-    };
-
-    cta.addEventListener("mouseenter", handleMouseEnter);
-    cta.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      cta.removeEventListener("mouseenter", handleMouseEnter);
-      cta.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
+    const pause = lines[lineIndex].cls === "line-out" ? 400 : 200;
+    const timer = setTimeout(() => {
+      if (lineIndex < lines.length - 1) {
+        setLineIndex((l) => l + 1);
+        setCharIndex(0);
+      } else {
+        setShowCursor(true);
+        setTimeout(() => setShowCta(true), 300);
+      }
+    }, pause);
+    return () => clearTimeout(timer);
+  }, [lineIndex, charIndex, lines]);
 
   const scrollToWork = () => {
-    const aboutSection = document.getElementById("about");
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    const el = document.getElementById("about");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
     <section className="hero" ref={heroRef} id="hero">
-      <ParticleBackground />
+      <div className="hero-content">
+        <div className="terminal-window">
+          <div className="terminal-chrome">
+            <div className="terminal-dots">
+              <span className="terminal-dot terminal-dot--red" />
+              <span className="terminal-dot terminal-dot--yellow" />
+              <span className="terminal-dot terminal-dot--green" />
+            </div>
+            <span className="terminal-title">suraj@portfolio:~</span>
+            <div className="terminal-dots-spacer" />
+          </div>
 
-      <div className="hero-content" ref={contentRef}>
-        <div className="hero-text-wrapper">
-          <h1 ref={titleRef} className="hero-title">
-            {hero?.name || "Suraj B V"}
-          </h1>
-
-          <p ref={taglineRef} className="hero-tagline">
-            {hero?.tagline || "Full-Stack Developer | Aspiring AI Engineer"}
-          </p>
-
-          <p ref={techStackRef} className="hero-tech-stack">
-            {hero?.techStack || "React • Node.js • AI/ML"}
-          </p>
-
-          <p ref={subtitleRef} className="hero-subtitle">
-            {hero?.subtitle ||
-              "I build beautiful, performant applications that make people smile"}
-          </p>
+          <div className="terminal-body">
+            {lines.map((line, i) => {
+              if (i > lineIndex) return null;
+              const text = i < lineIndex ? line.text : line.text.slice(0, charIndex);
+              const isTyping = i === lineIndex && charIndex < line.text.length;
+              return (
+                <div key={i} className={`terminal-line ${line.cls}`}>
+                  {text}
+                  {isTyping && <span className="typing-cursor">▋</span>}
+                </div>
+              );
+            })}
+            {showCursor && (
+              <div className="terminal-cursor-line">
+                <span className="terminal-prompt">$</span>
+                <span className="terminal-cursor" />
+              </div>
+            )}
+          </div>
         </div>
 
-        <button
-          ref={ctaRef}
-          className="btn btn-primary hero-cta"
-          onClick={scrollToWork}
-          aria-label="Scroll to see my work"
-        >
-          {hero?.ctaText || "See My Work ↓"}
-        </button>
+        {showCta && (
+          <button
+            className="hero-cta hero-cta--visible"
+            onClick={scrollToWork}
+            aria-label="Scroll to see my work"
+          >
+            <span className="hero-cta-prompt">$</span>
+            <span className="hero-cta-text">cd ./projects</span>
+            <span className="hero-cta-enter">⏎</span>
+          </button>
+        )}
       </div>
-
-      {/* Scroll indicator */}
-      <div className="scroll-indicator">
-        <div className="mouse">
-          <div className="wheel"></div>
-        </div>
-        <span className="scroll-text">Scroll</span>
-      </div>
-
-      {/* Decorative elements */}
-      <div className="hero-decoration hero-decoration-1"></div>
-      <div className="hero-decoration hero-decoration-2"></div>
     </section>
   );
 };

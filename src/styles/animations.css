@@ -1,9 +1,9 @@
-/* 
+/*
   Animation Definitions & Keyframes
-  Used with GSAP and CSS animations throughout the site
+  Terminal-themed portfolio animations
 */
 
-/* Fade In Animation */
+/* Fade In */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -17,7 +17,7 @@
 @keyframes slideInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -29,7 +29,7 @@
 @keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-24px);
   }
   to {
     opacity: 1;
@@ -41,7 +41,7 @@
 @keyframes slideInRight {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(24px);
   }
   to {
     opacity: 1;
@@ -53,7 +53,7 @@
 @keyframes scaleIn {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.96);
   }
   to {
     opacity: 1;
@@ -61,7 +61,60 @@
   }
 }
 
-/* Pulse Animation */
+/* Terminal Cursor Blink */
+@keyframes cursorBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Typing Effect (width reveal) */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Scanline Effect */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* Green Glow Pulse */
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 4px rgba(63, 185, 80, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(63, 185, 80, 0.6);
+  }
+}
+
+/* Text Glow Pulse */
+@keyframes textGlowPulse {
+  0%,
+  100% {
+    text-shadow: 0 0 4px rgba(63, 185, 80, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(63, 185, 80, 0.6);
+  }
+}
+
+/* Pulse */
 @keyframes pulse {
   0%,
   100% {
@@ -72,100 +125,46 @@
   }
 }
 
-/* Bounce Animation */
+/* Bounce */
 @keyframes bounce {
   0%,
   100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* Glow Effect (for buttons, cards) */
-@keyframes glow {
-  0%,
-  100% {
-    box-shadow: 0 0 5px rgba(255, 123, 84, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(255, 123, 84, 0.6);
-  }
-}
-
-/* Float Animation (for particles or floating elements) */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-/* Rotate Animation */
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+    transform: translateY(-8px);
   }
 }
 
 /* Shimmer Effect */
 @keyframes shimmer {
   0% {
-    background-position: -1000px 0;
+    background-position: -600px 0;
   }
   100% {
-    background-position: 1000px 0;
+    background-position: 600px 0;
   }
-}
-
-/* Text Gradient Animation */
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Parallax base setup (will be controlled by GSAP ScrollTrigger) */
-.parallax {
-  position: relative;
-}
-
-.parallax-element {
-  will-change: transform;
 }
 
 /* Utility animation classes */
 .animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.5s ease-out forwards;
 }
 
 .animate-slide-up {
-  animation: slideInUp 0.6s ease-out forwards;
+  animation: slideInUp 0.5s ease-out forwards;
 }
 
 .animate-slide-left {
-  animation: slideInLeft 0.6s ease-out forwards;
+  animation: slideInLeft 0.5s ease-out forwards;
 }
 
 .animate-slide-right {
-  animation: slideInRight 0.6s ease-out forwards;
+  animation: slideInRight 0.5s ease-out forwards;
 }
 
 .animate-scale-in {
-  animation: scaleIn 0.6s ease-out forwards;
+  animation: scaleIn 0.5s ease-out forwards;
 }
 
 .animate-pulse {
@@ -176,56 +175,70 @@
   animation: bounce 1s ease-in-out infinite;
 }
 
-.animate-rotate {
-  animation: rotate 20s linear infinite;
+.animate-cursor-blink {
+  animation: cursorBlink 1s step-end infinite;
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+.animate-glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
 }
 
-/* Stagger delay utilities (for sequential animations) */
+.animate-text-glow {
+  animation: textGlowPulse 2s ease-in-out infinite;
+}
+
+/* Typing effect container */
+.typing-effect {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--color-accent-green, #3fb950);
+  animation:
+    typing 2s steps(30, end) forwards,
+    cursorBlink 1s step-end infinite;
+}
+
+/* Scanline overlay */
+.scanline-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(63, 185, 80, 0.08);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Stagger delay utilities */
 .stagger-1 {
-  animation-delay: 100ms;
+  animation-delay: 80ms;
 }
 .stagger-2 {
-  animation-delay: 200ms;
+  animation-delay: 160ms;
 }
 .stagger-3 {
-  animation-delay: 300ms;
+  animation-delay: 240ms;
 }
 .stagger-4 {
-  animation-delay: 400ms;
+  animation-delay: 320ms;
 }
 .stagger-5 {
-  animation-delay: 500ms;
+  animation-delay: 400ms;
 }
 
-/* Smooth hover transitions */
+/* Smooth transitions */
 .smooth-transition {
-  transition: all 250ms ease;
+  transition: all 200ms ease;
 }
 
 .smooth-hover {
-  transition: all 250ms ease;
+  transition: all 200ms ease;
 }
 
 .smooth-hover:hover {
-  transform: translateY(-3px);
-}
-
-/* Pre-animating text for reveal effects */
-.reveal-text {
-  background: linear-gradient(
-    90deg,
-    var(--color-coral) 0%,
-    var(--color-peach) 50%,
-    var(--color-coral) 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 3s ease infinite;
+  transform: translateY(-2px);
 }
 
 /* Disable animations for reduced motion preferences */

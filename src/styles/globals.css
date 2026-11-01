@@ -1,8 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap");
 @import "./variables.css";
 @import "./animations.css";
 
 /* ============================================
-   GLOBAL STYLES - Portfolio Website
+   GLOBAL STYLES - Terminal/GitHub Dark Theme
    ============================================ */
 
 /* Reset & Base Styles */
@@ -40,6 +41,8 @@ body {
   line-height: 1.6;
   font-weight: var(--fw-normal);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Typography */
@@ -53,6 +56,8 @@ h6 {
   font-weight: var(--fw-bold);
   line-height: 1.2;
   margin-bottom: var(--space-md);
+  color: var(--color-text);
+  letter-spacing: -0.02em;
 }
 
 h1 {
@@ -82,19 +87,55 @@ h6 {
 p {
   font-size: var(--fs-base);
   margin-bottom: var(--space-md);
+  color: var(--color-text-secondary);
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-mono);
+}
+
+/* Inline code */
+code {
+  background-color: rgba(110, 118, 129, 0.15);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
   color: var(--color-text);
+  border: 1px solid var(--color-border-light);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border: none;
+  font-size: inherit;
+}
+
+/* Code blocks */
+pre {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  overflow-x: auto;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
 }
 
 /* Links */
 a {
-  color: var(--color-coral);
+  color: var(--color-accent-blue);
   text-decoration: none;
   transition: color var(--transition-base);
 }
 
 a:hover {
-  color: var(--color-peach);
+  color: var(--color-accent-blue);
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* Lists */
@@ -106,6 +147,7 @@ ol {
 
 li {
   margin-bottom: var(--space-sm);
+  color: var(--color-text-secondary);
 }
 
 /* Buttons */
@@ -118,52 +160,97 @@ button {
 }
 
 .btn {
-  padding: var(--space-md) var(--space-xl);
-  border-radius: var(--radius-lg);
-  font-weight: var(--fw-semibold);
-  font-size: var(--fs-base);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-sm);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
   transition: all var(--transition-base);
   cursor: pointer;
+  letter-spacing: 0.02em;
+  position: relative;
+  text-decoration: none;
 }
 
 .btn-primary {
-  background: var(--color-coral);
+  background: var(--color-accent-green);
   color: var(--color-bg);
-  box-shadow: var(--shadow-warm);
+  border: 1px solid var(--color-accent-green);
 }
 
 .btn-primary:hover {
-  background: var(--color-peach);
-  transform: translateY(-2px);
-  box-shadow: 0 15px 40px -8px rgba(255, 123, 84, 0.35);
+  background: #2ea043;
+  border-color: #2ea043;
+  box-shadow: var(--glow-green);
+  transform: translateY(-1px);
+  text-decoration: none;
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--color-coral);
-  border: 2px solid var(--color-coral);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
 }
 
 .btn-secondary:hover {
-  background: var(--color-coral);
-  color: var(--color-bg);
+  background: var(--color-surface);
+  border-color: var(--color-border-emphasis);
+  box-shadow: var(--glow-blue);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-accent-blue);
+  border: 1px solid transparent;
+  padding: var(--space-xs) var(--space-md);
+}
+
+.btn-ghost:hover {
+  background: rgba(88, 166, 255, 0.08);
+  border-color: rgba(88, 166, 255, 0.2);
+  text-decoration: none;
+}
+
+/* Terminal-style command button variant */
+.btn-command {
+  background: var(--color-surface);
+  color: var(--color-accent-green);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+}
+
+.btn-command::before {
+  content: "$ ";
+  color: var(--color-text-muted);
+}
+
+.btn-command:hover {
+  background: var(--color-surface-raised);
+  border-color: var(--color-accent-green);
+  box-shadow: var(--glow-green);
+  text-decoration: none;
 }
 
 /* Forms */
 input,
 textarea,
 select {
-  font-family: var(--font-body);
-  background-color: var(--color-bg-secondary);
+  font-family: var(--font-mono);
+  background-color: var(--color-bg);
   color: var(--color-text);
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: var(--space-md);
-  font-size: var(--fs-base);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--fs-sm);
   transition: all var(--transition-base);
 }
 
@@ -171,8 +258,13 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  border-color: var(--color-coral);
-  box-shadow: 0 0 0 3px rgba(255, 123, 84, 0.1);
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-muted);
 }
 
 textarea {
@@ -182,7 +274,8 @@ textarea {
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -190,12 +283,18 @@ textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-coral);
+  background: var(--color-border);
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-peach);
+  background: var(--color-border-emphasis);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) var(--color-bg);
 }
 
 /* Accessibility */
@@ -213,7 +312,7 @@ textarea {
 
 /* Focus visible for keyboard navigation */
 *:focus-visible {
-  outline: 3px solid var(--color-coral);
+  outline: 2px solid var(--color-accent-blue);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -224,15 +323,15 @@ a:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 3px solid var(--color-coral);
+  outline: 2px solid var(--color-accent-blue);
   outline-offset: 3px;
-  box-shadow: 0 0 0 5px rgba(255, 123, 84, 0.2);
+  box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.15);
 }
 
 /* Selection Color */
 ::selection {
-  background-color: var(--color-coral);
-  color: var(--color-bg);
+  background-color: rgba(88, 166, 255, 0.3);
+  color: var(--color-text);
 }
 
 /* Responsive Typography */
@@ -263,7 +362,10 @@ select:focus-visible {
   }
 }
 
-/* Utility Classes */
+/* ============================================
+   Layout Utilities
+   ============================================ */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -303,4 +405,141 @@ select:focus-visible {
 .py-lg {
   padding-top: var(--space-lg);
   padding-bottom: var(--space-lg);
+}
+
+/* ============================================
+   Section Title Styles (Terminal Comment Style)
+   ============================================ */
+
+.section-title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::before {
+  content: "// ";
+  color: var(--color-accent-green);
+  font-weight: var(--fw-normal);
+}
+
+.section-subtitle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2xl);
+  letter-spacing: 0.03em;
+}
+
+.section-subtitle::before {
+  content: "/* ";
+  color: var(--color-text-muted);
+}
+
+.section-subtitle::after {
+  content: " */";
+  color: var(--color-text-muted);
+}
+
+/* ============================================
+   Terminal / Code Aesthetic Utilities
+   ============================================ */
+
+/* Terminal prompt line */
+.terminal-prompt {
+  font-family: var(--font-mono);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+}
+
+.terminal-prompt::before {
+  content: "$ ";
+  color: var(--color-accent-green);
+}
+
+/* Code comment style text */
+.code-comment {
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-size: var(--fs-sm);
+}
+
+/* Card with terminal border style */
+.terminal-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.terminal-card:hover {
+  border-color: var(--color-border-emphasis);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Separator styled like a code comment */
+.separator {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-2xl) 0;
+  position: relative;
+}
+
+/* Tag/badge styling */
+.tag {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  padding: 0.15em 0.6em;
+  border-radius: var(--radius-full);
+  background: rgba(88, 166, 255, 0.1);
+  color: var(--color-accent-blue);
+  border: 1px solid rgba(88, 166, 255, 0.2);
+  display: inline-block;
+  letter-spacing: 0.02em;
+}
+
+.tag-green {
+  background: rgba(63, 185, 80, 0.1);
+  color: var(--color-accent-green);
+  border-color: rgba(63, 185, 80, 0.2);
+}
+
+.tag-purple {
+  background: rgba(188, 140, 255, 0.1);
+  color: var(--color-accent-purple);
+  border-color: rgba(188, 140, 255, 0.2);
+}
+
+.tag-orange {
+  background: rgba(240, 136, 62, 0.1);
+  color: var(--color-accent-orange);
+  border-color: rgba(240, 136, 62, 0.2);
+}
+
+/* Monospace text utility */
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Accent color utilities */
+.text-green {
+  color: var(--color-accent-green);
+}
+
+.text-blue {
+  color: var(--color-accent-blue);
+}
+
+.text-purple {
+  color: var(--color-accent-purple);
+}
+
+.text-orange {
+  color: var(--color-accent-orange);
 }

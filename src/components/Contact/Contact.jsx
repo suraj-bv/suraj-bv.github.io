@@ -40,25 +40,26 @@ const Contact = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".contact-form-container", {
+      gsap.from(".ct-form-container", {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",
         },
         opacity: 0,
-        x: -60,
+        y: 40,
         duration: 0.8,
         ease: "power3.out",
       });
 
-      gsap.from(".contact-info", {
+      gsap.from(".ct-sidebar", {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",
         },
         opacity: 0,
-        x: 60,
+        y: 40,
         duration: 0.8,
+        delay: 0.15,
         ease: "power3.out",
       });
     }, sectionRef);
@@ -189,82 +190,123 @@ const Contact = () => {
       });
   };
 
-  // Social links are now empty by default — filled from Sanity below
+  /**
+   * Extract a display path from a URL for the terminal-command style.
+   * e.g. "https://github.com/suraj-bv" -> "github.com/suraj-bv"
+   */
+  const getDisplayPath = (url) => {
+    try {
+      const u = new URL(url);
+      return u.hostname + u.pathname.replace(/\/$/, "");
+    } catch {
+      return url;
+    }
+  };
 
   return (
     <section ref={sectionRef} className="contact" id="contact">
-      <div className="container">
-        <h2 className="section-title">Let's Connect</h2>
-        <p className="section-subtitle">
-          Got an idea, role, or wild build in mind? I am in.
-        </p>
+      <div className="ct-container">
+        <div className="ct-header">
+          <span className="ct-header-prompt">
+            <span className="ct-prompt-symbol">$</span> contact --interactive
+          </span>
+        </div>
 
-        <div className="contact-wrapper">
-          <div className="contact-form-container" ref={formRef}>
-            <form onSubmit={handleSubmit} className="contact-form" noValidate>
-              <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formState.name}
-                  onChange={handleChange}
-                  placeholder="Your name"
-                  aria-invalid={Boolean(errors.name)}
-                  aria-describedby={errors.name ? "name-error" : undefined}
-                  required
-                />
+        <div className="ct-wrapper">
+          {/* Form */}
+          <div className="ct-form-container" ref={formRef}>
+            <div className="ct-form-title-bar">
+              <span className="ct-dot ct-dot-red" />
+              <span className="ct-dot ct-dot-yellow" />
+              <span className="ct-dot ct-dot-green" />
+              <span className="ct-form-title-text">message.sh</span>
+            </div>
+
+            <form onSubmit={handleSubmit} className="ct-form" noValidate>
+              <div className="ct-field">
+                <label htmlFor="name" className="ct-label">
+                  <span className="ct-comment">{"//"} your name</span>
+                </label>
+                <div className="ct-input-row">
+                  <span className="ct-input-prompt">&gt;</span>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formState.name}
+                    onChange={handleChange}
+                    placeholder="enter name..."
+                    className="ct-input"
+                    aria-invalid={Boolean(errors.name)}
+                    aria-describedby={errors.name ? "name-error" : undefined}
+                    required
+                  />
+                </div>
                 {errors.name && (
-                  <p id="name-error" className="field-error" role="alert">
-                    {errors.name}
+                  <p id="name-error" className="ct-error" role="alert">
+                    <span className="ct-error-prefix">ERR!</span> {errors.name}
                   </p>
                 )}
               </div>
 
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                  placeholder="your-email@example.com"
-                  aria-invalid={Boolean(errors.email)}
-                  aria-describedby={errors.email ? "email-error" : undefined}
-                  required
-                />
+              <div className="ct-field">
+                <label htmlFor="email" className="ct-label">
+                  <span className="ct-comment">{"//"} your email</span>
+                </label>
+                <div className="ct-input-row">
+                  <span className="ct-input-prompt">&gt;</span>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formState.email}
+                    onChange={handleChange}
+                    placeholder="you@example.com"
+                    className="ct-input"
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? "email-error" : undefined}
+                    required
+                  />
+                </div>
                 {errors.email && (
-                  <p id="email-error" className="field-error" role="alert">
-                    {errors.email}
+                  <p id="email-error" className="ct-error" role="alert">
+                    <span className="ct-error-prefix">ERR!</span> {errors.email}
                   </p>
                 )}
               </div>
 
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formState.message}
-                  onChange={handleChange}
-                  placeholder="Tell me about your next project..."
-                  required
-                  rows="5"
-                  maxLength="800"
-                  aria-invalid={Boolean(errors.message)}
-                  aria-describedby={
-                    errors.message
-                      ? "message-error message-help"
-                      : "message-help"
-                  }
-                />
-                <p id="message-help" className="field-help">
-                  {formState.message.trim().length}/800 characters
+              <div className="ct-field">
+                <label htmlFor="message" className="ct-label">
+                  <span className="ct-comment">{"//"} your message</span>
+                </label>
+                <div className="ct-input-row ct-input-row-textarea">
+                  <span className="ct-input-prompt ct-input-prompt-top">
+                    &gt;
+                  </span>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formState.message}
+                    onChange={handleChange}
+                    placeholder="tell me about your project..."
+                    className="ct-input ct-textarea"
+                    required
+                    rows="5"
+                    maxLength="800"
+                    aria-invalid={Boolean(errors.message)}
+                    aria-describedby={
+                      errors.message
+                        ? "message-error message-help"
+                        : "message-help"
+                    }
+                  />
+                </div>
+                <p id="message-help" className="ct-char-count">
+                  {formState.message.trim().length}/800
                 </p>
                 {errors.message && (
-                  <p id="message-error" className="field-error" role="alert">
+                  <p id="message-error" className="ct-error" role="alert">
+                    <span className="ct-error-prefix">ERR!</span>{" "}
                     {errors.message}
                   </p>
                 )}
@@ -272,63 +314,73 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="btn btn-primary"
-                style={{ width: "100%" }}
+                className="ct-submit"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
-                  "Sending..."
+                  <span className="ct-submit-loading">
+                    <span className="ct-spinner" /> sending...
+                  </span>
                 ) : (
                   <>
-                    <FontAwesomeIcon icon={faPaperPlane} /> Send Message
+                    <span className="ct-submit-symbol">$</span> send_message{" "}
+                    <span className="ct-submit-enter">&#x21B5;</span>
                   </>
                 )}
               </button>
 
               {submitted && (
-                <div className="success-message" role="status">
-                  <FontAwesomeIcon icon={faCircleCheck} /> Thanks for reaching
-                  out! I'll get back to you soon.
+                <div className="ct-success" role="status">
+                  <FontAwesomeIcon icon={faCircleCheck} />{" "}
+                  <span>Message sent successfully</span>
                 </div>
               )}
               {submitError && (
-                <div className="error-message" role="alert">
-                  {submitError}
+                <div className="ct-fail" role="alert">
+                  <span className="ct-error-prefix">ERR!</span> {submitError}
                 </div>
               )}
             </form>
           </div>
 
-          <div className="contact-info">
-            <h3>Connect With Me</h3>
-            <p>
-              I'm always interested in hearing about new projects and
-              opportunities.
-            </p>
+          {/* Sidebar: social links */}
+          <div className="ct-sidebar">
+            <div className="ct-sidebar-header">
+              <span className="ct-comment">{"//"} connect</span>
+            </div>
 
-            <div className="social-links">
+            <div className="ct-social-list">
               {socialLinks?.map((link) => (
                 <a
                   key={link._id}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="social-link"
+                  className="ct-social-link"
                   aria-label={link.label}
                 >
-                  <span className="social-icon">
+                  <span className="ct-social-prompt">$</span>
+                  <span className="ct-social-cmd">open</span>
+                  <span className="ct-social-icon">
                     <FontAwesomeIcon icon={getIcon(link.icon)} />
                   </span>
-                  <span>{link.name}</span>
+                  <span className="ct-social-path">
+                    {getDisplayPath(link.url)}
+                  </span>
                 </a>
               ))}
             </div>
 
-            <p className="closing-line">
-              "Life is too short to write boring code." <br /> Let's make
-              something amazing together!{" "}
-              <FontAwesomeIcon icon={faPaperPlane} />
-            </p>
+            <div className="ct-sidebar-footer">
+              <p className="ct-footer-text">
+                <span className="ct-comment">
+                  {"//"} open to opportunities &amp; collaborations
+                </span>
+              </p>
+              <p className="ct-footer-status">
+                <span className="ct-status-dot" /> available
+              </p>
+            </div>
           </div>
         </div>
       </div>

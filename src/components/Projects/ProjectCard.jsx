@@ -2,7 +2,34 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faArrowUpRightFromSquare as faArrowUpRightFromSquareSolid } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowUpRightFromSquare,
+  faBookBookmark,
+} from "@fortawesome/free-solid-svg-icons";
+
+// Color palette for language/tech dots, deterministic per tag name
+const TAG_COLORS = [
+  "#f1e05a", // JavaScript yellow
+  "#3178c6", // TypeScript blue
+  "#e34c26", // HTML orange
+  "#563d7c", // CSS purple
+  "#3fb950", // green
+  "#f97583", // pink/red
+  "#79c0ff", // light blue
+  "#d2a8ff", // lavender
+  "#ffa657", // orange
+  "#7ee787", // mint
+  "#ff7b72", // coral
+  "#a5d6ff", // sky
+];
+
+function getTagColor(tag) {
+  let hash = 0;
+  for (let i = 0; i < tag.length; i++) {
+    hash = tag.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return TAG_COLORS[Math.abs(hash) % TAG_COLORS.length];
+}
 
 const ProjectCard = ({ project }) => {
   const cardRef = useRef(null);
@@ -11,84 +38,93 @@ const ProjectCard = ({ project }) => {
     const card = cardRef.current;
     if (!card) return;
 
-    const handleMouseMove = (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = (y - centerY) * 0.05;
-      const rotateY = (centerX - x) * 0.05;
-
+    const handleMouseEnter = () => {
       gsap.to(card, {
-        rotationX: rotateX,
-        rotationY: rotateY,
-        transformPerspective: 1200,
-        duration: 0.3,
+        scale: 1.015,
+        duration: 0.25,
+        ease: "power2.out",
       });
     };
 
     const handleMouseLeave = () => {
       gsap.to(card, {
-        rotationX: 0,
-        rotationY: 0,
-        duration: 0.6,
+        scale: 1,
+        duration: 0.3,
         ease: "power2.out",
       });
     };
 
-    card.addEventListener("mousemove", handleMouseMove);
+    card.addEventListener("mouseenter", handleMouseEnter);
     card.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      card.removeEventListener("mousemove", handleMouseMove);
+      card.removeEventListener("mouseenter", handleMouseEnter);
       card.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 
+  const primaryLink = project.live || project.github || "#";
+
   return (
     <div ref={cardRef} className="project-card">
-      {/* Project Image */}
-      <div className="project-image">
-        <div className="image-placeholder">
-          <FontAwesomeIcon icon={project.icon} />
-        </div>
+      {/* Header: repo icon + title + visibility badge */}
+      <div className="project-card-header">
+        <FontAwesomeIcon
+          icon={project.icon || faBookBookmark}
+          className="project-card-repo-icon"
+        />
+        <h3 className="project-card-title">
+          <a href={primaryLink} target="_blank" rel="noopener noreferrer">
+            {project.title}
+          </a>
+        </h3>
+        <span className="project-card-visibility">Public</span>
       </div>
 
-      {/* Project Content */}
-      <div className="project-content">
-        <h3 className="project-title">{project.title}</h3>
-        <p>{project.description}</p>
+      {/* Description */}
+      <p className="project-card-description">{project.description}</p>
 
-        <div className="project-tags">
-          {project.tags.map((tag, idx) => (
-            <span key={idx} className="tag">
+      {/* Footer: tags + links */}
+      <div className="project-card-footer">
+        {/* Language tags with colored dots */}
+        <div className="project-card-tags">
+          {project.tags?.map((tag, idx) => (
+            <span key={idx} className="project-tag">
+              <span
+                className="project-tag-dot"
+                style={{ backgroundColor: getTagColor(tag) }}
+              />
               {tag}
             </span>
           ))}
         </div>
 
-        <div className="project-links">
-          <a
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary btn-live"
-            title="View live demo"
-          >
-            <FontAwesomeIcon icon={faArrowUpRightFromSquareSolid} /> Live Demo
-          </a>
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-secondary btn-github"
-            title="View source code"
-          >
-            <FontAwesomeIcon icon={faGithub} /> GitHub
-          </a>
+        {/* Action links */}
+        <div className="project-card-links">
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-card-link"
+              title="Live Demo"
+            >
+              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+              Live
+            </a>
+          )}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-card-link"
+              title="Source Code"
+            >
+              <FontAwesomeIcon icon={faGithub} />
+              Source
+            </a>
+          )}
         </div>
       </div>
     </div>

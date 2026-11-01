@@ -1,10 +1,8 @@
-import { useState, useEffect, lazy, Suspense } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWandSparkles } from "@fortawesome/free-solid-svg-icons";
-import Hero from "./components/Hero/Hero";
-import EasterEgg from "./components/EasterEgg/EasterEgg";
+import { useState, useEffect, lazy, Suspense, useCallback } from "react";
+import Signature from "./components/ui/signature";
 import "./App.css";
 
+const Hero = lazy(() => import("./components/Hero/Hero"));
 const About = lazy(() => import("./components/About/About"));
 const Skills = lazy(() => import("./components/Skills/Skills"));
 const Projects = lazy(() => import("./components/Projects/Projects"));
@@ -14,57 +12,137 @@ const Achievements = lazy(
 const Experience = lazy(() => import("./components/Experience/Experience"));
 const Contact = lazy(() => import("./components/Contact/Contact"));
 
-function App() {
-  const [theme, setTheme] = useState("light");
+const NAV_ITEMS = [
+  { id: "hero", label: "~/home" },
+  { id: "about", label: "~/about" },
+  { id: "skills", label: "~/skills" },
+  { id: "projects", label: "~/projects" },
+  { id: "experience", label: "~/experience" },
+  { id: "achievements", label: "~/achievements" },
+  { id: "contact", label: "~/contact" },
+];
 
-  // Initialize theme
+function App() {
+  const [activeSection, setActiveSection] = useState("hero");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Set dark theme on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setTheme(savedTheme);
-    document.documentElement.setAttribute("data-theme", savedTheme);
+    document.documentElement.setAttribute("data-theme", "dark");
   }, []);
 
-  // Toggle theme function (for dark mode toggle easter egg)
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-  };
+  // Track active section via IntersectionObserver
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
+    );
+
+    const timer = setTimeout(() => {
+      for (const item of NAV_ITEMS) {
+        const el = document.getElementById(item.id);
+        if (el) observer.observe(el);
+      }
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, []);
+
+  const handleNavClick = useCallback((e, sectionId) => {
+    e.preventDefault();
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+    setMobileMenuOpen(false);
+  }, []);
+
+  // Close mobile menu on escape
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, []);
 
   return (
-    <div className="app" data-theme={theme}>
+    <div className="app">
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
 
-      {/* Easter Egg Component - Dark Mode Toggle */}
-      <EasterEgg onToggleTheme={toggleTheme} currentTheme={theme} />
+      {/* Terminal Tab Bar Navigation */}
+      <nav className="terminal-nav" role="navigation" aria-label="Main">
+        <div className="terminal-nav__inner">
+          <div className="terminal-nav__logo">
+            <span className="terminal-nav__prompt">$</span>
+            <span className="terminal-nav__name">suraj-bv</span>
+          </div>
+
+          <button
+            className="terminal-nav__hamburger"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            <span>{mobileMenuOpen ? "✕" : "☰"}</span>
+          </button>
+
+          <ul
+            className={`terminal-nav__tabs ${mobileMenuOpen ? "is-open" : ""}`}
+            role="tablist"
+          >
+            {NAV_ITEMS.map((item) => (
+              <li key={item.id} role="presentation">
+                <a
+                  href={`#${item.id}`}
+                  role="tab"
+                  className={`terminal-nav__tab ${activeSection === item.id ? "is-active" : ""}`}
+                  aria-selected={activeSection === item.id}
+                  onClick={(e) => handleNavClick(e, item.id)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
 
       {/* Main Content */}
       <main className="main-content" id="main-content">
-        <Hero />
         <Suspense
-          fallback={<div className="section-loading">Loading sections...</div>}
+          fallback={
+            <div className="section-loading">
+              <span className="terminal-cursor" aria-hidden="true">
+                _
+              </span>
+              <span>Loading...</span>
+            </div>
+          }
         >
+          <Hero />
           <About />
           <Skills />
           <Projects />
-          <Achievements />
           <Experience />
+          <Achievements />
           <Contact />
         </Suspense>
       </main>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <p className="text-center text-muted">
-            © 2026 Suraj | Built with React, Passion & a splash of retro vibes
-            <FontAwesomeIcon icon={faWandSparkles} />
-          </p>
-        </div>
-      </footer>
+      {/* Terminal Footer */}
+      <Signature />
     </div>
   );
 }

@@ -1,41 +1,165 @@
-/* App.css - Main Application Styles */
+/* App.css - Terminal Theme Styles */
+
+html {
+  scroll-behavior: smooth;
+}
 
 .app {
   position: relative;
   min-height: 100vh;
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  transition:
-    background-color 0.6s ease,
-    color 0.6s ease;
+  background-color: var(--color-dark-bg, #0d1117);
+  color: var(--color-text-light, #e6edf3);
 }
 
 .main-content {
   position: relative;
   z-index: 1;
+  padding-top: 3.5rem; /* offset for sticky nav */
 }
 
+/* Skip Link */
 .skip-link {
   position: absolute;
   top: -100px;
-  left: var(--space-md);
-  background: var(--color-coral);
-  color: var(--color-bg);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-md);
-  font-weight: var(--fw-semibold);
-  z-index: 1000;
+  left: 1rem;
+  background: var(--color-accent-green, #3fb950);
+  color: var(--color-dark-bg, #0d1117);
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 4px 4px;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-weight: 600;
+  font-size: 0.85rem;
+  z-index: 1100;
+  text-decoration: none;
 }
 
 .skip-link:focus {
-  top: var(--space-md);
+  top: 0;
 }
 
+/* =============================================
+   Terminal Navigation Bar
+   ============================================= */
+
+.terminal-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--color-dark-bg, #0d1117);
+  border-bottom: 1px solid var(--color-border, #30363d);
+  backdrop-filter: blur(8px);
+}
+
+.terminal-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 3.5rem;
+}
+
+/* Logo / Prompt */
+.terminal-nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.95rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.terminal-nav__prompt {
+  color: var(--color-accent-green, #3fb950);
+}
+
+.terminal-nav__name {
+  color: var(--color-text-light, #e6edf3);
+}
+
+/* Tab List */
+.terminal-nav__tabs {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.terminal-nav__tab {
+  display: flex;
+  align-items: center;
+  height: 3.5rem;
+  padding: 0 0.85rem;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-text-muted, #8b949e);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.terminal-nav__tab:hover {
+  color: var(--color-text-light, #e6edf3);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.terminal-nav__tab.is-active {
+  color: var(--color-text-light, #e6edf3);
+  border-bottom-color: var(--color-accent-green, #3fb950);
+  background-color: rgba(63, 185, 80, 0.06);
+}
+
+/* Hamburger */
+.terminal-nav__hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--color-border, #30363d);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-text-muted, #8b949e);
+  font-size: 1.25rem;
+  cursor: pointer;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.terminal-nav__hamburger:hover {
+  color: var(--color-text-light, #e6edf3);
+  border-color: var(--color-text-muted, #8b949e);
+}
+
+/* Loading Fallback */
 .section-loading {
-  text-align: center;
-  padding: var(--space-3xl) var(--space-lg);
-  color: var(--color-text-muted);
-  font-size: var(--fs-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 60vh;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.95rem;
+  color: var(--color-text-muted, #8b949e);
+}
+
+.terminal-cursor {
+  display: inline-block;
+  animation: cursorBlink 1s step-end infinite;
+  color: var(--color-accent-green, #3fb950);
+  font-weight: 700;
 }
 
 /* Section Base Styles */
@@ -44,40 +168,21 @@ section {
   width: 100%;
 }
 
-/* Footer */
-.footer {
-  background-color: var(--color-bg-secondary);
-  padding: var(--space-3xl) var(--space-lg);
-  border-top: 1px solid var(--color-border-light);
-  margin-top: var(--space-4xl);
-  text-align: center;
-}
-
-.footer p {
-  margin: 0;
-  font-size: var(--fs-sm);
-}
-
-/* Scroll Progress Indicator (optional) */
+/* Scroll Progress Indicator */
 .scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--color-coral),
-    var(--color-peach),
-    var(--color-gold)
-  );
-  z-index: 999;
+  height: 2px;
+  background: var(--color-accent-green, #3fb950);
+  z-index: 1001;
 }
 
-/* Section Animations */
+/* Section entrance animation */
 @keyframes sectionReveal {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -86,18 +191,66 @@ section {
 }
 
 section {
-  animation: sectionReveal 0.8s ease-out forwards;
+  animation: sectionReveal 0.6s ease-out forwards;
+}
+
+@keyframes cursorBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   section {
     animation: none;
   }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
 
-/* Responsive adjustments */
+/* =============================================
+   Mobile Responsive
+   ============================================= */
+
 @media (max-width: 768px) {
-  .footer {
-    padding: var(--space-2xl) var(--space-lg);
+  .terminal-nav__hamburger {
+    display: flex;
+  }
+
+  .terminal-nav__tabs {
+    display: none;
+    position: absolute;
+    top: 3.5rem;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: var(--color-dark-bg, #0d1117);
+    border-bottom: 1px solid var(--color-border, #30363d);
+    padding: 0.5rem 0;
+    gap: 0;
+  }
+
+  .terminal-nav__tabs.is-open {
+    display: flex;
+  }
+
+  .terminal-nav__tab {
+    height: auto;
+    padding: 0.75rem 1.5rem;
+    border-bottom: none;
+    border-left: 2px solid transparent;
+    width: 100%;
+  }
+
+  .terminal-nav__tab.is-active {
+    border-bottom: none;
+    border-left-color: var(--color-accent-green, #3fb950);
+    background-color: rgba(63, 185, 80, 0.08);
   }
 }
