@@ -58,6 +58,7 @@ function App() {
   }, []);
 
   const handleNavClick = useCallback((e, sectionId) => {
+    setActiveSection(sectionId);
     e.preventDefault();
     const el = document.getElementById(sectionId);
     if (el) {
