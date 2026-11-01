@@ -73,7 +73,7 @@ h3 {
 }
 
 h4 {
-  font-size: var(--fs-2xl);
+  font-size: var(--fs-3xl);
 }
 
 h5 {
@@ -345,7 +345,7 @@ select:focus-visible {
   }
 
   h3 {
-    font-size: var(--fs-2xl);
+    font-size: var(--fs-3xl);
   }
 
   h4 {
@@ -367,7 +367,7 @@ select:focus-visible {
    ============================================ */
 
 .container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 var(--space-lg);
 }
@@ -413,7 +413,7 @@ select:focus-visible {
 
 .section-title {
   font-family: var(--font-mono);
-  font-size: var(--fs-2xl);
+  font-size: var(--fs-3xl);
   font-weight: var(--fw-bold);
   color: var(--color-text);
   margin-bottom: var(--space-sm);

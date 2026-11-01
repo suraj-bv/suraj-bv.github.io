@@ -48,16 +48,16 @@
   --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
 
   /* Font Sizes (Mobile-first, then scale up) */
-  --fs-xs: 0.75rem;    /* 12px */
-  --fs-sm: 0.875rem;   /* 14px */
-  --fs-base: 1rem;     /* 16px */
-  --fs-lg: 1.125rem;   /* 18px */
-  --fs-xl: 1.25rem;    /* 20px */
-  --fs-2xl: 1.5rem;    /* 24px */
-  --fs-3xl: 2rem;      /* 32px */
-  --fs-4xl: 2.5rem;    /* 40px */
-  --fs-5xl: 3.5rem;    /* 56px */
-  --fs-6xl: 4.5rem;    /* 72px */
+  --fs-xs: 0.8rem;    /* 12px */
+  --fs-sm: 0.95rem;   /* 14px */
+  --fs-base: 1.1rem;     /* 16px */
+  --fs-lg: 1.25rem;   /* 18px */
+  --fs-xl: 1.4rem;    /* 20px */
+  --fs-2xl: 1.75rem;    /* 24px */
+  --fs-3xl: 2.25rem;      /* 32px */
+  --fs-4xl: 3rem;    /* 40px */
+  --fs-5xl: 4rem;    /* 56px */
+  --fs-6xl: 5rem;    /* 72px */
 
   /* Font Weights */
   --fw-light: 300;
@@ -71,11 +71,11 @@
   --space-xs: 0.25rem;  /* 4px */
   --space-sm: 0.5rem;   /* 8px */
   --space-md: 1rem;     /* 16px */
-  --space-lg: 1.5rem;   /* 24px */
-  --space-xl: 2rem;     /* 32px */
-  --space-2xl: 3rem;    /* 48px */
-  --space-3xl: 4rem;    /* 64px */
-  --space-4xl: 6rem;    /* 96px */
+  --space-lg: 2rem;   /* 24px */
+  --space-xl: 2.5rem;     /* 32px */
+  --space-2xl: 4rem;    /* 48px */
+  --space-3xl: 5rem;    /* 64px */
+  --space-4xl: 7rem;    /* 96px */
   --space-5xl: 8rem;    /* 128px */
 
   /* Border Radius */
