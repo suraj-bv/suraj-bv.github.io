@@ -1,7 +1,7 @@
 /* Achievements Section - Terminal/GitHub-dark aesthetic */
 
 .achievements {
-  padding: 5rem 1.5rem;
+  padding: 6rem 2rem;
   background: var(--color-dark-bg, #0d1117);
   position: relative;
 }
@@ -24,7 +24,7 @@
 
 .ach-header-prompt {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: var(--color-text-light, #e6edf3);
   font-weight: 600;
 }
@@ -36,10 +36,10 @@
 
 .ach-header-count {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: var(--color-text-muted, #8b949e);
   background: var(--color-surface, #161b22);
-  padding: 0.25rem 0.75rem;
+  padding: 0.35rem 0.9rem;
   border-radius: 999px;
   border: 1px solid var(--color-border, #30363d);
 }
@@ -56,7 +56,7 @@
   background: var(--color-surface, #161b22);
   border: 1px solid var(--color-border, #30363d);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: 1.75rem;
   position: relative;
   overflow: hidden;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -106,7 +106,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 1.15rem;
   color: #fff;
   flex-shrink: 0;
 }
@@ -114,7 +114,7 @@
 /* Date */
 .ach-date {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: var(--color-text-muted, #8b949e);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -123,7 +123,7 @@
 /* Title */
 .ach-title {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--ach-accent, var(--color-accent-green, #3fb950));
   margin: 0;
@@ -133,7 +133,7 @@
 /* Subtitle */
 .ach-subtitle {
   font-family: var(--font-body, 'Inter', system-ui, sans-serif);
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--color-text-muted, #8b949e);
   margin: 0;
   font-weight: 500;
@@ -142,7 +142,7 @@
 /* Description */
 .ach-desc {
   font-family: var(--font-body, 'Inter', system-ui, sans-serif);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: var(--color-text-muted, #8b949e);
   margin: 0;
   line-height: 1.5;
@@ -162,7 +162,7 @@
 
 @media (max-width: 640px) {
   .achievements {
-    padding: 3rem 1rem;
+    padding: 4rem 1.25rem;
   }
 
   .ach-header {
@@ -172,7 +172,7 @@
   }
 
   .ach-header-prompt {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
 
   .ach-grid {

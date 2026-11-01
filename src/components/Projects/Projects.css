@@ -1,14 +1,14 @@
 /* Projects Section - GitHub Repository Style */
 
 .projects {
-  padding: 5rem 1.5rem;
+  padding: 6rem 2rem;
   position: relative;
   background: var(--color-dark-bg, #0d1117);
 }
 
 /* Section Header */
 .projects-header {
-  max-width: 900px;
+  max-width: 1060px;
   margin: 0 auto 2.5rem;
 }
 
@@ -21,12 +21,12 @@
 
 .projects-pin-icon {
   color: var(--color-text-muted, #8b949e);
-  font-size: 1rem;
+  font-size: 1.15rem;
 }
 
 .projects-header-title {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.875rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--color-text-light, #e6edf3);
   margin: 0;
@@ -35,7 +35,7 @@
 
 .projects-terminal-prompt {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.8125rem;
+  font-size: 0.95rem;
   color: var(--color-text-muted, #8b949e);
   margin: 0;
 }
@@ -54,7 +54,7 @@
 
 /* Separator line like GitHub */
 .projects-separator {
-  max-width: 900px;
+  max-width: 1060px;
   margin: 0 auto 2rem;
   border: none;
   border-top: 1px solid var(--color-border, #30363d);
@@ -65,7 +65,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  max-width: 900px;
+  max-width: 1060px;
   margin: 0 auto;
 }
 
@@ -76,7 +76,7 @@
   background: var(--color-surface, #161b22);
   border: 1px solid var(--color-border, #30363d);
   border-radius: 6px;
-  padding: 1rem 1.25rem;
+  padding: 1.25rem 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -98,13 +98,13 @@
 
 .project-card-repo-icon {
   color: var(--color-text-muted, #8b949e);
-  font-size: 1rem;
+  font-size: 1.15rem;
   flex-shrink: 0;
 }
 
 .project-card-title {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.875rem;
+  font-size: 1.05rem;
   font-weight: 600;
   margin: 0;
 }
@@ -122,7 +122,7 @@
 /* Visibility badge */
 .project-card-visibility {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.6875rem;
+  font-size: 0.825rem;
   color: var(--color-text-muted, #8b949e);
   border: 1px solid var(--color-border, #30363d);
   border-radius: 2em;
@@ -134,7 +134,7 @@
 
 /* Description */
 .project-card-description {
-  font-size: 0.8125rem;
+  font-size: 0.95rem;
   color: var(--color-text-muted, #8b949e);
   line-height: 1.5;
   margin: 0;
@@ -162,7 +162,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3125rem;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: var(--color-text-muted, #8b949e);
 }
 
@@ -187,7 +187,7 @@
   align-items: center;
   gap: 0.3125rem;
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: var(--color-text-muted, #8b949e);
   text-decoration: none;
   transition: color 0.15s ease;
@@ -235,10 +235,10 @@
   }
 
   .project-card-title {
-    font-size: 0.8125rem;
+    font-size: 0.95rem;
   }
 
   .project-card-description {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
   }
 }

@@ -1,14 +1,14 @@
 /* Experience Section - Git Log Terminal Theme */
 
 .experience {
-  padding: 80px 24px;
+  padding: 96px 32px;
   background: var(--color-dark-bg, #0d1117);
   position: relative;
   overflow: hidden;
 }
 
 .experience-container {
-  max-width: 900px;
+  max-width: 1060px;
   margin: 0 auto;
 }
 
@@ -21,7 +21,7 @@
   border: 1px solid var(--color-border, #30363d);
   border-bottom: none;
   border-radius: 8px 8px 0 0;
-  padding: 12px 16px;
+  padding: 16px 20px;
 }
 
 .terminal-dots {
@@ -49,7 +49,7 @@
 
 .terminal-title {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 13px;
+  font-size: 15px;
   color: var(--color-text-muted, #8b949e);
 }
 
@@ -58,7 +58,7 @@
   border: 1px solid var(--color-border, #30363d);
   border-top: none;
   border-radius: 0 0 8px 8px;
-  padding: 24px;
+  padding: 28px;
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
 }
 
@@ -68,7 +68,7 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 32px;
-  font-size: 14px;
+  font-size: 18px;
   flex-wrap: wrap;
 }
 
@@ -162,14 +162,14 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 18px;
   margin-bottom: 8px;
   flex-wrap: wrap;
 }
 
 .git-star {
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .git-hash {
@@ -178,7 +178,7 @@
 }
 
 .git-ref {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .git-ref-paren {
@@ -204,7 +204,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.8;
 }
 
@@ -222,7 +222,7 @@
 }
 
 .git-company-icon {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--color-text-muted, #8b949e);
   margin-left: 4px;
   opacity: 0.7;
@@ -256,7 +256,7 @@
 }
 
 .git-location {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text-muted, #8b949e);
   margin-top: 2px;
 }
@@ -275,14 +275,14 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.6;
 }
 
 .git-diff-plus {
   font-weight: 700;
   flex-shrink: 0;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.6;
 }
 
@@ -297,7 +297,7 @@
   align-items: center;
   gap: 8px;
   margin-top: 24px;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .git-cursor {
@@ -344,7 +344,7 @@
 
   .git-command-line {
     margin-bottom: 24px;
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .git-commit-entry {
@@ -357,19 +357,19 @@
   }
 
   .git-commit-header {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .git-meta-line {
-    font-size: 12px;
-  }
-
-  .git-message-title {
     font-size: 14px;
   }
 
+  .git-message-title {
+    font-size: 18px;
+  }
+
   .git-diff-line {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .git-commit-content {
@@ -397,7 +397,7 @@
 
   .git-command-line {
     margin-bottom: 20px;
-    font-size: 12px;
+    font-size: 14px;
     gap: 6px;
   }
 
@@ -422,7 +422,7 @@
   }
 
   .git-commit-header {
-    font-size: 12px;
+    font-size: 14px;
     gap: 6px;
   }
 
@@ -444,7 +444,7 @@
   }
 
   .git-message-title {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .git-location {
@@ -511,7 +511,7 @@
   }
 
   .git-message-title {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .git-diff-line {

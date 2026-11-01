@@ -1,7 +1,7 @@
 /* Contact Section - Terminal/GitHub-dark aesthetic */
 
 .contact {
-  padding: 5rem 1.5rem;
+  padding: 6rem 2rem;
   background: var(--color-dark-bg, #0d1117);
   position: relative;
 }
@@ -21,7 +21,7 @@
 
 .ct-header-prompt {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: var(--color-text-light, #e6edf3);
   font-weight: 600;
 }
@@ -52,7 +52,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 0.75rem 1rem;
+  padding: 0.9rem 1.2rem;
   background: rgba(48, 54, 61, 0.6);
   border-bottom: 1px solid var(--color-border, #30363d);
 }
@@ -77,14 +77,14 @@
 
 .ct-form-title-text {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.75rem;
+  font-size: 1.05rem;
   color: var(--color-text-muted, #8b949e);
   margin-left: 0.5rem;
 }
 
 /* Form */
 .ct-form {
-  padding: 1.5rem;
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -104,7 +104,7 @@
 
 .ct-comment {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: var(--color-text-muted, #8b949e);
   font-style: italic;
 }
@@ -133,7 +133,7 @@
 
 .ct-input-prompt {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   color: var(--color-accent-green, #3fb950);
   flex-shrink: 0;
   user-select: none;
@@ -150,7 +150,7 @@
   outline: none;
   color: var(--color-text-light, #e6edf3);
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   padding: 0.75rem 0;
   width: 100%;
 }
@@ -161,14 +161,14 @@
 
 .ct-textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 120px;
   line-height: 1.5;
 }
 
 /* Character count */
 .ct-char-count {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted, #8b949e);
   text-align: right;
   margin: 0;
@@ -178,7 +178,7 @@
 /* Error message */
 .ct-error {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.75rem;
+  font-size: 1.05rem;
   color: #f85149;
   margin: 0;
 }
@@ -208,7 +208,7 @@
   border-radius: 6px;
   color: var(--color-accent-green, #3fb950);
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
@@ -321,13 +321,13 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  padding: 0.9rem 1.2rem;
   background: var(--color-surface, #161b22);
   border: 1px solid var(--color-border, #30363d);
   border-radius: 6px;
   text-decoration: none;
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: var(--color-text-light, #e6edf3);
   transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
@@ -356,7 +356,7 @@
 
 .ct-social-icon {
   color: var(--color-text-muted, #8b949e);
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   width: 1.2em;
   text-align: center;
   flex-shrink: 0;
@@ -385,7 +385,7 @@
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: var(--color-accent-green, #3fb950);
   margin: 0;
 }
@@ -440,16 +440,16 @@
   }
 
   .ct-input {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
   }
 
   .ct-submit {
-    font-size: 0.8rem;
-    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    padding: 0.9rem 1.2rem;
   }
 
   .ct-social-link {
-    font-size: 0.75rem;
+    font-size: 1.05rem;
     padding: 0.6rem 0.75rem;
   }
 }

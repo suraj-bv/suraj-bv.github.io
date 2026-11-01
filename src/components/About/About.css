@@ -3,7 +3,7 @@
 /* ========================================= */
 
 .about {
-  padding: 5rem 1.5rem;
+  padding: 6rem 2rem;
   background: var(--color-dark-bg);
   position: relative;
   overflow: hidden;
@@ -12,7 +12,7 @@
 
 /* ---- Terminal container ---- */
 .about-terminal {
-  max-width: 900px;
+  max-width: 1060px;
   margin: 0 auto;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -25,7 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.65rem 1rem;
+  padding: 0.85rem 1.25rem;
   background: var(--color-border);
   border-bottom: 1px solid var(--color-border);
   user-select: none;
@@ -61,7 +61,7 @@
 
 .about-terminal__title {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: var(--color-text-muted);
   letter-spacing: 0.02em;
 }
@@ -69,9 +69,9 @@
 /* ---- Code block shared styles ---- */
 .about-code-block,
 .about-json-block {
-  padding: 1.25rem 1.5rem;
+  padding: 1.5rem 1.75rem;
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: 1.05rem;
   line-height: 1.7;
   overflow-x: auto;
 }
@@ -99,7 +99,7 @@
   color: var(--color-text-muted);
   opacity: 0.45;
   user-select: none;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
 }
 
 /* ---- Syntax colors ---- */
@@ -134,14 +134,14 @@
 .about-photos {
   display: flex;
   gap: 1rem;
-  padding: 1.25rem 1.5rem;
+  padding: 1.5rem 1.75rem;
   overflow-x: auto;
 }
 
 .about-photo-frame {
   flex: 1 1 0;
   min-width: 160px;
-  max-width: 280px;
+  max-width: 320px;
   border: 1px solid var(--color-border);
   border-radius: 6px;
   overflow: hidden;
@@ -150,7 +150,7 @@
 
 .about-photo-frame__tab {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted);
   padding: 0.4rem 0.75rem;
   background: var(--color-border);
@@ -194,7 +194,7 @@
 /* ---- Responsive ---- */
 @media (max-width: 768px) {
   .about {
-    padding: 3.5rem 1rem;
+    padding: 4rem 1.25rem;
   }
 
   .about-terminal {
@@ -204,7 +204,7 @@
   .about-code-block,
   .about-json-block {
     padding: 1rem;
-    font-size: 0.8rem;
+    font-size: 0.95rem;
   }
 
   .about-photos {
@@ -232,7 +232,7 @@
   .about-code-block,
   .about-json-block {
     padding: 0.75rem 0.5rem;
-    font-size: 0.72rem;
+    font-size: 0.85rem;
   }
 
   .about-line-num {
