@@ -1,17 +1,18 @@
 import { useEffect, useRef } from "react";
-import {
-  faFingerprint,
-  faHouse,
-  faPlaneDeparture,
-} from "@fortawesome/free-solid-svg-icons";
+import { useSanity } from "../../lib/useSanity";
+import { getIcon } from "../../lib/iconMap";
 import ProjectCard from "./ProjectCard";
 import "./Projects.css";
 
+const PROJECTS_QUERY = `*[_type == "project"] | order(order asc) { _id, title, description, tags, github, live, icon }`;
+
 const Projects = () => {
   const sectionRef = useRef(null);
+  const { data: projectsData, loading } = useSanity(PROJECTS_QUERY);
 
   useEffect(() => {
-    // Simple intersection observer for animations
+    if (!projectsData?.length) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -33,37 +34,9 @@ const Projects = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [projectsData]);
 
-  const projectsData = [
-    {
-      title: "Crimetrace AI",
-      description:
-        "AI-driven criminal face recognition system with real-time identification. Engineered Django backend for authentication, integrated OpenCV & FaceNet for video processing, and built interactive Streamlit UI with optimized low-latency performance.",
-      tags: ["Django", "OpenCV", "FaceNet", "Python", "Streamlit"],
-      github: "https://github.com/surajbv/crimetrace-ai",
-      live: "https://crimetrace.surajbv.me",
-      icon: faFingerprint,
-    },
-    {
-      title: "WanderMate",
-      description:
-        "Travel mate finding platform connecting users based on calculated compatibility scores. Integrated TalkJS API for real-time chat, managed full development lifecycle with clean GitHub version control, delivering a complete functional webpage.",
-      tags: ["React", "TalkJS", "MongoDB", "Node.js"],
-      github: "https://github.com/surajbv/wandermate",
-      live: "https://wandermate.surajbv.me",
-      icon: faPlaneDeparture,
-    },
-    {
-      title: "QuickRent",
-      description:
-        "Rental application with responsive Java Swing UI and real-time application logic using JDBC. Designed complete system with MySQL persistence, applied OOP principles for maintainability and scalability.",
-      tags: ["Java", "Swing", "JDBC", "MySQL", "OOP"],
-      github: "https://github.com/surajbv/quickrent",
-      live: "#",
-      icon: faHouse,
-    },
-  ];
+  if (loading && !projectsData) return null;
 
   return (
     <section ref={sectionRef} className="projects" id="projects">
@@ -71,8 +44,14 @@ const Projects = () => {
         <h2 className="section-title">Featured Projects</h2>
 
         <div className="projects-grid">
-          {projectsData.map((project) => (
-            <ProjectCard key={project.title} project={project} />
+          {projectsData?.map((project) => (
+            <ProjectCard
+              key={project._id}
+              project={{
+                ...project,
+                icon: getIcon(project.icon),
+              }}
+            />
           ))}
         </div>
       </div>

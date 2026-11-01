@@ -2,14 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleCheck,
-  faEnvelope,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faGithub,
-  faLinkedin,
-  faXTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+import { useSanity } from "../../lib/useSanity";
+import { getIcon } from "../../lib/iconMap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import emailjs from "@emailjs/browser";
@@ -20,9 +16,12 @@ gsap.registerPlugin(ScrollTrigger);
 // Initialize Email.js
 emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "");
 
+const SOCIAL_QUERY = `*[_type == "socialLink"] | order(order asc) { _id, name, url, icon, label }`;
+
 const Contact = () => {
   const sectionRef = useRef(null);
   const formRef = useRef(null);
+  const { data: socialLinks } = useSanity(SOCIAL_QUERY);
   const submitTimeoutRef = useRef(null);
   const resetTimeoutRef = useRef(null);
   const [formState, setFormState] = useState({
@@ -190,32 +189,7 @@ const Contact = () => {
       });
   };
 
-  const socialLinks = [
-    {
-      name: "GitHub",
-      url: "https://github.com/suraj-bv",
-      icon: faGithub,
-      label: "Open GitHub profile",
-    },
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/suraj-bv/",
-      icon: faLinkedin,
-      label: "Open LinkedIn profile",
-    },
-    {
-      name: "X",
-      url: "https://x.com/Suraj_bv_",
-      icon: faXTwitter,
-      label: "Open X profile",
-    },
-    {
-      name: "Email",
-      url: "mailto:surajbv5566@gmail.com",
-      icon: faEnvelope,
-      label: "Send an email",
-    },
-  ];
+  // Social links are now empty by default — filled from Sanity below
 
   return (
     <section ref={sectionRef} className="contact" id="contact">
@@ -333,9 +307,9 @@ const Contact = () => {
             </p>
 
             <div className="social-links">
-              {socialLinks.map((link) => (
+              {socialLinks?.map((link) => (
                 <a
-                  key={link.name}
+                  key={link._id}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -343,7 +317,7 @@ const Contact = () => {
                   aria-label={link.label}
                 >
                   <span className="social-icon">
-                    <FontAwesomeIcon icon={link.icon} />
+                    <FontAwesomeIcon icon={getIcon(link.icon)} />
                   </span>
                   <span>{link.name}</span>
                 </a>

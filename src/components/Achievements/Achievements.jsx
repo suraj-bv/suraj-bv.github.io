@@ -1,17 +1,18 @@
 import { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGraduationCap,
-  faMedal,
-  faStar,
-  faTrophy,
-} from "@fortawesome/free-solid-svg-icons";
+import { useSanity } from "../../lib/useSanity";
+import { getIcon } from "../../lib/iconMap";
 import "./Achievements.css";
+
+const ACHIEVEMENTS_QUERY = `*[_type == "achievement"] | order(order asc) { _id, title, subtitle, date, icon, color, description }`;
 
 const Achievements = () => {
   const sectionRef = useRef(null);
+  const { data: achievementsData, loading } = useSanity(ACHIEVEMENTS_QUERY);
 
   useEffect(() => {
+    if (!achievementsData?.length) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -33,46 +34,9 @@ const Achievements = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [achievementsData]);
 
-  const achievementsData = [
-    {
-      title: "Hack-2-Intern Winner",
-      subtitle: "VTU, Mysore",
-      date: "Dec 2024",
-      icon: faTrophy,
-      color: "coral",
-      description:
-        "1st Candidate shortlisted for paid internship among 200+ participants. Demonstrated exceptional problem-solving and innovation skills.",
-    },
-    {
-      title: "Hackathon Champion",
-      subtitle: "Shridevi Institute & VTU",
-      date: "Oct & Dec 2024",
-      icon: faMedal,
-      color: "peach",
-      description:
-        "Led team to develop innovative solution website within 24 hours. Showcased leadership and rapid prototyping capabilities.",
-    },
-    {
-      title: "Merit Scholarship",
-      subtitle: "Excellence in Academics",
-      date: "2022-2024",
-      icon: faGraduationCap,
-      color: "gold",
-      description:
-        "Consistently maintained CGPA of 8.5 or higher throughout the course. Recognized for academic excellence and dedication.",
-    },
-    {
-      title: "HackerRank 5-Star",
-      subtitle: "Python Proficiency",
-      date: "2022-Present",
-      icon: faStar,
-      color: "sage",
-      description:
-        "Earned 5-Star Rating in Python on HackerRank, demonstrating strong coding proficiency on global competitive platform.",
-    },
-  ];
+  if (loading && !achievementsData) return null;
 
   return (
     <section ref={sectionRef} className="achievements" id="achievements">
@@ -83,13 +47,13 @@ const Achievements = () => {
         </p>
 
         <div className="achievements-grid">
-          {achievementsData.map((achievement, idx) => (
+          {achievementsData?.map((achievement) => (
             <div
-              key={idx}
+              key={achievement._id}
               className={`achievement-card achievement-${achievement.color}`}
             >
               <div className="achievement-icon">
-                <FontAwesomeIcon icon={achievement.icon} />
+                <FontAwesomeIcon icon={getIcon(achievement.icon)} />
               </div>
 
               <div className="achievement-content">

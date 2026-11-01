@@ -1,12 +1,16 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useSanity } from "../../lib/useSanity";
 import ParticleBackground from "../ParticleBackground/ParticleBackground";
 import "./Hero.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const HERO_QUERY = `*[_type == "hero"][0]{ name, tagline, techStack, subtitle, ctaText }`;
+
 const Hero = () => {
+  const { data: hero } = useSanity(HERO_QUERY);
   const heroRef = useRef(null);
   const titleRef = useRef(null);
   const taglineRef = useRef(null);
@@ -157,19 +161,20 @@ const Hero = () => {
       <div className="hero-content" ref={contentRef}>
         <div className="hero-text-wrapper">
           <h1 ref={titleRef} className="hero-title">
-            Suraj B V
+            {hero?.name || "Suraj B V"}
           </h1>
 
           <p ref={taglineRef} className="hero-tagline">
-            Full-Stack Developer | Aspiring AI Engineer
+            {hero?.tagline || "Full-Stack Developer | Aspiring AI Engineer"}
           </p>
 
           <p ref={techStackRef} className="hero-tech-stack">
-            React • Node.js • AI/ML
+            {hero?.techStack || "React • Node.js • AI/ML"}
           </p>
 
           <p ref={subtitleRef} className="hero-subtitle">
-            I build beautiful, performant applications that make people smile
+            {hero?.subtitle ||
+              "I build beautiful, performant applications that make people smile"}
           </p>
         </div>
 
@@ -179,7 +184,7 @@ const Hero = () => {
           onClick={scrollToWork}
           aria-label="Scroll to see my work"
         >
-          See My Work ↓
+          {hero?.ctaText || "See My Work ↓"}
         </button>
       </div>
 

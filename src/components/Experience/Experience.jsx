@@ -1,21 +1,23 @@
 import { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBuilding,
-  faCircleCheck,
-  faGraduationCap,
-  faLocationDot,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { useSanity } from "../../lib/useSanity";
+import { getIcon } from "../../lib/iconMap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./Experience.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const EXPERIENCE_QUERY = `*[_type == "experience"] | order(order asc) { _id, company, role, duration, location, icon, color, achievements }`;
+
 const Experience = () => {
   const sectionRef = useRef(null);
+  const { data: experienceData, loading } = useSanity(EXPERIENCE_QUERY);
 
   useEffect(() => {
+    if (!experienceData?.length) return;
+
     const ctx = gsap.context(() => {
       gsap.from(".mui-timeline-item", {
         scrollTrigger: {
@@ -31,38 +33,9 @@ const Experience = () => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [experienceData]);
 
-  const experienceData = [
-    {
-      company: "Clean Fanatics",
-      role: "Software Engineering Intern",
-      duration: "Nov 2025 - Present",
-      location: "On-Site, Bengaluru",
-      icon: faBuilding,
-      color: "coral",
-      achievements: [
-        "Adapted quickly to Zoho ecosystem including Creator, CRM, Analytics, Flow, and REST API integrations",
-        "Developed custom Deluge functions to automate business processes and translate requirements into scalable solutions",
-        "Configured workflows and integrations to streamline operations and improve data flow between Zoho applications",
-        "Gained hands-on experience across multiple Zoho platforms with deep understanding of business logic",
-      ],
-    },
-    {
-      company: "Shridevi Institute of Engineering and Technology",
-      role: "Bachelor of Engineering (Information Science and Engineering)",
-      duration: "Dec 2022 - May 2026",
-      location: "Tumkur, Karnataka",
-      icon: faGraduationCap,
-      color: "peach",
-      achievements: [
-        "Graduating with CGPA 8.93/10 and consistently listed for merit scholarship",
-        "Built strong foundations in programming, databases, and software engineering principles",
-        "Applied classroom learning through projects in AI/ML, full-stack development, and Java applications",
-        "Actively participated in hackathons and technical problem-solving competitions",
-      ],
-    },
-  ];
+  if (loading && !experienceData) return null;
 
   return (
     <section ref={sectionRef} className="experience" id="experience">
@@ -73,12 +46,12 @@ const Experience = () => {
         </p>
 
         <div className="timeline-shell">
-          {experienceData.map((item, idx) => {
+          {experienceData?.map((item, idx) => {
             const isLeft = idx % 2 === 0;
 
             return (
               <div
-                key={item.company}
+                key={item._id}
                 className={`timeline-row mui-timeline-item ${
                   isLeft ? "timeline-left" : "timeline-right"
                 }`}
@@ -89,7 +62,7 @@ const Experience = () => {
                       <div className="timeline-header">
                         <div className="company-info">
                           <span className="company-icon">
-                            <FontAwesomeIcon icon={item.icon} />
+                            <FontAwesomeIcon icon={getIcon(item.icon)} />
                           </span>
                           <div className="company-details">
                             <h3 className="company-name">{item.company}</h3>
@@ -106,8 +79,8 @@ const Experience = () => {
                       </div>
 
                       <ul className="achievements">
-                        {item.achievements.map((achievement, aidx) => (
-                          <li key={`${item.company}-ach-${aidx}`}>
+                        {item.achievements?.map((achievement, aidx) => (
+                          <li key={aidx}>
                             <span className="achievement-icon">
                               <FontAwesomeIcon icon={faCircleCheck} />
                             </span>
@@ -131,7 +104,7 @@ const Experience = () => {
                       <div className="timeline-header">
                         <div className="company-info">
                           <span className="company-icon">
-                            <FontAwesomeIcon icon={item.icon} />
+                            <FontAwesomeIcon icon={getIcon(item.icon)} />
                           </span>
                           <div className="company-details">
                             <h3 className="company-name">{item.company}</h3>
@@ -148,8 +121,8 @@ const Experience = () => {
                       </div>
 
                       <ul className="achievements">
-                        {item.achievements.map((achievement, aidx) => (
-                          <li key={`${item.company}-ach-${aidx}`}>
+                        {item.achievements?.map((achievement, aidx) => (
+                          <li key={aidx}>
                             <span className="achievement-icon">
                               <FontAwesomeIcon icon={faCircleCheck} />
                             </span>

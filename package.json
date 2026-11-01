@@ -19,6 +19,8 @@
     "@fortawesome/react-fontawesome": "^3.3.1",
     "@mui/lab": "^9.0.0-beta.2",
     "@mui/material": "^9.0.0",
+    "@sanity/client": "^8.14.1",
+    "@sanity/image-url": "^2.1.1",
     "@vitejs/plugin-react": "^4.2.1",
     "emailjs-com": "^3.2.0",
     "gsap": "^3.12.2",
