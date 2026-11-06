@@ -31,30 +31,23 @@ function App() {
     document.documentElement.setAttribute("data-theme", "dark");
   }, []);
 
-  // Track active section via IntersectionObserver
+  // Track active section on scroll
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        }
-      },
-      { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
-    );
-
-    const timer = setTimeout(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY + 120;
+      let current = "hero";
       for (const item of NAV_ITEMS) {
         const el = document.getElementById(item.id);
-        if (el) observer.observe(el);
+        if (el && el.offsetTop <= scrollY) {
+          current = item.id;
+        }
       }
-    }, 500);
-
-    return () => {
-      clearTimeout(timer);
-      observer.disconnect();
+      setActiveSection(current);
     };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleNavClick = useCallback((e, sectionId) => {
