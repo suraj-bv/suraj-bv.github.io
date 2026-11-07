@@ -91,7 +91,7 @@ const About = () => {
 
   return (
     <section ref={sectionRef} className="about" id="about">
-      <div className="container about-terminal term-window">
+      <div className="about-terminal term-window">
         {/* Terminal header */}
         <div className="term-titlebar">
           <div className="term-dots">
