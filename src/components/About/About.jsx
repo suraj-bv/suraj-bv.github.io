@@ -93,20 +93,11 @@ const About = () => {
     <section ref={sectionRef} className="about" id="about">
       <div className="container about-terminal">
         {/* Terminal header */}
-        <div className="about-terminal__header">
-          <div className="about-terminal__dots">
-            <span className="about-terminal__dot about-terminal__dot--red" />
-            <span className="about-terminal__dot about-terminal__dot--yellow" />
-            <span className="about-terminal__dot about-terminal__dot--green" />
+        <div className="term-titlebar">
+          <div className="term-dots">
+            <span /><span /><span />
           </div>
-          <span className="about-terminal__title">
-            ~/about.config.js
-          </span>
-          <div className="about-terminal__dots about-terminal__dots--hidden">
-            <span className="about-terminal__dot" />
-            <span className="about-terminal__dot" />
-            <span className="about-terminal__dot" />
-          </div>
+          <span className="term-filename">~/about.config.js</span>
         </div>
 
         {/* Comment header */}

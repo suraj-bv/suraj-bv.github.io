@@ -105,13 +105,11 @@ const Experience = () => {
   return (
     <section ref={sectionRef} className="experience" id="experience">
       <div className="experience-container">
-        <div className="git-terminal-header">
-          <div className="terminal-dots">
-            <span className="dot dot-red" />
-            <span className="dot dot-yellow" />
-            <span className="dot dot-green" />
+        <div className="term-titlebar">
+          <div className="term-dots">
+            <span /><span /><span />
           </div>
-          <span className="terminal-title">~/experience</span>
+          <span className="term-filename">~/experience</span>
         </div>
 
         <div className="git-terminal-body">

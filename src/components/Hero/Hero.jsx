@@ -83,14 +83,11 @@ const Hero = () => {
     <section className="hero" ref={heroRef} id="hero">
       <div className="hero-content">
         <div className="terminal-window">
-          <div className="terminal-chrome">
-            <div className="terminal-dots">
-              <span className="terminal-dot terminal-dot--red" />
-              <span className="terminal-dot terminal-dot--yellow" />
-              <span className="terminal-dot terminal-dot--green" />
+          <div className="term-titlebar">
+            <div className="term-dots">
+              <span /><span /><span />
             </div>
-            <span className="terminal-title">suraj@portfolio:~</span>
-            <div className="terminal-dots-spacer" />
+            <span className="term-filename">suraj@portfolio:~</span>
           </div>
 
           <div className="terminal-body">

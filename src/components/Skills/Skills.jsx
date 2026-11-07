@@ -188,13 +188,11 @@ const Skills = () => {
 
       {/* JSON dependency block */}
       <div ref={jsonRef} className="skills-json-block">
-        <div className="skills-json-titlebar">
-          <div className="skills-json-dots">
-            <span />
-            <span />
-            <span />
+        <div className="term-titlebar">
+          <div className="term-dots">
+            <span /><span /><span />
           </div>
-          <span className="skills-json-filename">skills.json</span>
+          <span className="term-filename">skills.json</span>
         </div>
         <div className="skills-json-content">{buildJsonLines()}</div>
       </div>
@@ -212,11 +210,9 @@ const Skills = () => {
               data-color={color}
             >
               {/* Titlebar */}
-              <div className="skills-term-titlebar">
-                <div className="skills-term-dots">
-                  <span />
-                  <span />
-                  <span />
+              <div className="term-titlebar">
+                <div className="term-dots">
+                  <span /><span /><span />
                 </div>
                 <div className="skills-term-title">
                   <span className="term-icon">

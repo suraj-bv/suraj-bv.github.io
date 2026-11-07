@@ -215,11 +215,11 @@ const Contact = () => {
         <div className="ct-wrapper">
           {/* Form */}
           <div className="ct-form-container" ref={formRef}>
-            <div className="ct-form-title-bar">
-              <span className="ct-dot ct-dot-red" />
-              <span className="ct-dot ct-dot-yellow" />
-              <span className="ct-dot ct-dot-green" />
-              <span className="ct-form-title-text">message.sh</span>
+            <div className="term-titlebar">
+              <div className="term-dots">
+                <span /><span /><span />
+              </div>
+              <span className="term-filename">message.sh</span>
             </div>
 
             <form onSubmit={handleSubmit} className="ct-form" noValidate>
