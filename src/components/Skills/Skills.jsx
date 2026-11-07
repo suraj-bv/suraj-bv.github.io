@@ -187,7 +187,7 @@ const Skills = () => {
       </div>
 
       {/* JSON dependency block */}
-      <div ref={jsonRef} className="skills-json-block">
+      <div ref={jsonRef} className="skills-json-block term-window">
         <div className="term-titlebar">
           <div className="term-dots">
             <span /><span /><span />
@@ -206,7 +206,7 @@ const Skills = () => {
           return (
             <div
               key={group._id}
-              className="skills-term-card"
+              className="skills-term-card term-window"
               data-color={color}
             >
               {/* Titlebar */}

@@ -104,7 +104,7 @@ const Experience = () => {
 
   return (
     <section ref={sectionRef} className="experience" id="experience">
-      <div className="experience-container">
+      <div className="experience-container term-window">
         <div className="term-titlebar">
           <div className="term-dots">
             <span /><span /><span />

@@ -214,7 +214,7 @@ const Contact = () => {
 
         <div className="ct-wrapper">
           {/* Form */}
-          <div className="ct-form-container" ref={formRef}>
+          <div className="ct-form-container term-window" ref={formRef}>
             <div className="term-titlebar">
               <div className="term-dots">
                 <span /><span /><span />

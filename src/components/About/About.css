@@ -14,10 +14,6 @@
 .about-terminal {
   max-width: 1200px;
   margin: 0 auto;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  overflow: hidden;
 }
 
 /* ---- Terminal title bar ---- */

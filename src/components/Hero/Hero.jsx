@@ -82,7 +82,7 @@ const Hero = () => {
   return (
     <section className="hero" ref={heroRef} id="hero">
       <div className="hero-content">
-        <div className="terminal-window">
+        <div className="terminal-window term-window">
           <div className="term-titlebar">
             <div className="term-dots">
               <span /><span /><span />

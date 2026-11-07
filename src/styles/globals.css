@@ -579,3 +579,11 @@ select:focus-visible {
   color: var(--color-text-muted, #8b949e);
   user-select: none;
 }
+
+/* Shared Terminal Window Container */
+.term-window {
+  background: var(--color-surface, #161b22);
+  border: 1px solid var(--color-border, #30363d);
+  border-radius: 8px;
+  overflow: hidden;
+}
