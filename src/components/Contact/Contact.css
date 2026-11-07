@@ -449,3 +449,13 @@
     padding: 0.6rem 0.75rem;
   }
 }
+
+/* Remove default focus outlines — the row handles focus styling */
+.ct-input:focus,
+.ct-input:focus-visible,
+.ct-textarea:focus,
+.ct-textarea:focus-visible {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
